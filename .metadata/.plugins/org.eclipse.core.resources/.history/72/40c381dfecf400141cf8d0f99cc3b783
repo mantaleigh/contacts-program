@@ -1,18 +1,11 @@
-/* Samantha Voigt and Aline Mitsuzawa
- * 
- * 
- */
-
 import java.util.*;
 import java.io.*;
 
 public class ContactBook<T> {
 	
-	private Hashtable<String, Contact> searchTable;
-	
 	//empty constructor used first time using the program
 	public ContactBook() {
-		searchTable = new Hashtable<String, Contact>(); // create a blank hashtable
+		
 	}
 	
 	/* constructor that takes in a file of information
@@ -22,8 +15,8 @@ public class ContactBook<T> {
 	public ContactBook(String srcFile) {
 		try {
 			Scanner scan = new Scanner(new File(srcFile));
-			while(scan.hasNextLine()) { 
-				System.out.println(scan.nextLine()); // temp
+			while(scan.hasNext()) { 
+				System.out.println(scan.next());
 			}
 			scan.close();
 		} catch (IOException ex) { 

@@ -1,18 +1,11 @@
-/* Samantha Voigt and Aline Mitsuzawa
- * 
- * 
- */
-
 import java.util.*;
 import java.io.*;
 
 public class ContactBook<T> {
 	
-	private Hashtable<String, Contact> searchTable;
-	
 	//empty constructor used first time using the program
 	public ContactBook() {
-		searchTable = new Hashtable<String, Contact>(); // create a blank hashtable
+		
 	}
 	
 	/* constructor that takes in a file of information
