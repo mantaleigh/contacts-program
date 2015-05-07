@@ -1,0 +1,9 @@
+public class Contact {
+
+	private String name, meetingLoc, location, companyOrSchool, email, otherContact, Notes; 
+	
+	public static void main (String[] args) { 
+		System.out.println("hello");
+	}
+	
+}
