@@ -119,11 +119,10 @@ public class Contact {
 		
 	}
 	
-	// testing
-//	public static void main (String[] args) { 
-//		Contact cTest = new Contact("Samantha");
-//		System.out.println(cTest);
-//	}
+	public static void main (String[] args) { 
+		Contact cTest = new Contact("Samantha");
+		System.out.println(cTest);
+	}
 	
 	
 }

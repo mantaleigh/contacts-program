@@ -7,16 +7,6 @@
  * Simple class that stores each contact's information. 
  * Consists basically entirely of getters and setters. Serves as a template for new contact objects. 
  * 
- * Can format a Calendar date as all of these:
- * YEAR + MONTH + DAY_OF_MONTH
- * YEAR + MONTH + WEEK_OF_MONTH + DAY_OF_WEEK
- * YEAR + MONTH + DAY_OF_WEEK_IN_MONTH + DAY_OF_WEEK
- * YEAR + DAY_OF_YEAR
- * YEAR + DAY_OF_WEEK + WEEK_OF_YEAR
- * 
- * can use: void set(int year, int month, int date) to set a Calendar object to a date
- * 
- * 
  */
 
 
@@ -38,7 +28,7 @@ public class Contact {
 	public Contact (String newName) { 
 		name = newName;
 		meetingLoc = location = companyOrSchool = email = otherContact = notes = ""; // set all other instance vars to be empty
-		lastContacted = Calendar.getInstance(); // testing
+		lastContacted = Calendar.getInstance();
 	}
 	
 	// ---------- GETTERS -----------
@@ -70,7 +60,6 @@ public class Contact {
 		return notes;
 	}
 	
-	// can use this to get the calendar object to compare to another using compareTo
 	public Calendar getLastContacted() { 
 		return lastContacted;
 	}
@@ -108,22 +97,4 @@ public class Contact {
 	public void setLastContacted(Calendar newLastContacted) { 
 		lastContacted = newLastContacted;
 	}
-	
-	public String toString() { 
-		String[] listOfMonths = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-		String s = "******* CONTACT *******\nName: " + getName() + "\nMeeting Location: " + getMeetingLoc() 
-				+ "\nLocation: " + getLocation() + "\nCompany or School: " + getCompanyOrSchool() + "\nEmail: " 
-				+ getEmail() + "\nOther Contact Info: " + getOtherContact() + "\nNotes: " + getNotes() + "\nLast Contacted: "
-				+ listOfMonths[lastContacted.get(Calendar.MONTH)] + " " + lastContacted.get(Calendar.DAY_OF_MONTH) + ", " + lastContacted.get(Calendar.YEAR);	
-		return s;
-		
-	}
-	
-	// testing
-//	public static void main (String[] args) { 
-//		Contact cTest = new Contact("Samantha");
-//		System.out.println(cTest);
-//	}
-	
-	
 }
