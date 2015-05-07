@@ -1,0 +1,22 @@
+/* Samantha Voigt & Aline Mitsuzawa
+ * 
+ * Contact.java
+ * 
+ * Last edited: May 7, 2015
+ * 
+ * Header comment goes here
+ * 
+ */
+
+
+import java.util.Calendar;
+
+
+public class Contact {
+
+	private String name, meetingLoc, location, companyOrSchool, email, otherContact, Notes; 
+	
+	
+	
+	
+}

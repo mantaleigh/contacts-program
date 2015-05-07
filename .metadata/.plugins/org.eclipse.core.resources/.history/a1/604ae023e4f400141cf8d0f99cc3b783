@@ -1,0 +1,86 @@
+/* Samantha Voigt & Aline Mitsuzawa
+ * 
+ * Contact.java
+ * 
+ * Last edited: May 7, 2015
+ * 
+ * Header comment goes here
+ * 
+ */
+
+
+import java.util.Calendar;
+
+
+public class Contact {
+
+	private String name, meetingLoc, location, companyOrSchool, email, otherContact, notes; 
+	private Calendar lastContacted;
+	
+	// ---------- GETTERS -----------
+	public String getName() { 
+		return name;
+	}
+	
+	public String getMeetingLoc() { 
+		return meetingLoc;
+	}
+	
+	public String getLocation() { 
+		return location;
+	}
+	
+	public String getCompanyOrSchool() { 
+		return companyOrSchool;
+	}
+	
+	public String getEmail() { 
+		return email;
+	}
+	
+	public String getOtherContact() { 
+		return otherContact;
+	}
+	
+	public String getNotes() { 
+		return notes;
+	}
+	
+	public Calendar getLastContacted() { 
+		return lastContacted;
+	}
+	
+	// ---------- SETTERS -----------
+	
+	public void setName(String newName) { 
+		name = newName;
+	}
+	
+	public void setMeetingLoc(String newMeetingLoc) { 
+		meetingLoc = newMeetingLoc;
+	}
+	
+	public void setLocation(String newLocation) { 
+		location = newLocation;
+	}
+	
+	public String setCompanyOrSchool() { 
+		return companyOrSchool;
+	}
+	
+	public String setEmail() { 
+		return email;
+	}
+	
+	public String setOtherContact() { 
+		return otherContact;
+	}
+	
+	public String setNotes() { 
+		return notes;
+	}
+	
+	public Calendar setLastContacted() { 
+		return lastContacted;
+	}
+}

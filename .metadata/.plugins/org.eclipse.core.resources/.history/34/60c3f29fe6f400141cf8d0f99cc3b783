@@ -1,0 +1,111 @@
+/* Samantha Voigt & Aline Mitsuzawa
+ * 
+ * Contact.java
+ * 
+ * Last edited: May 7, 2015
+ * 
+ * Simple class that stores each contact's information. 
+ * Consists basically entirely of getters and setters. Serves as a template for new contact objects. 
+ * 
+ */
+
+
+import java.util.Calendar;
+
+
+public class Contact {
+
+	private String name, meetingLoc, location, companyOrSchool, email, otherContact, notes; 
+	private Calendar lastContacted;
+	
+    // -------- CONSTRUCTORS ---------
+	// first constructor that takes every possible instance variable in as a parameter
+	public Contact (String name, String meetingLoc, String location, String companyOrSchool, String email, String otherContact, String notes, Calendar lastContacted) { 
+		
+	}
+	
+	// second constructor that only takes the name of the contact. The rest of the contact's properties can be set using the provided setters
+	public Contact (String newName) { 
+		name = newName;
+		meetingLoc = location = companyOrSchool = email = otherContact = notes = ""; // set all other instance vars to be empty
+		lastContacted = Calendar.getInstance(); // sets lastContacted to be the time of creation
+	}
+	
+	// ---------- GETTERS -----------
+	public String getName() { 
+		return name;
+	}
+	
+	public String getMeetingLoc() { 
+		return meetingLoc;
+	}
+	
+	public String getLocation() { 
+		return location;
+	}
+	
+	public String getCompanyOrSchool() { 
+		return companyOrSchool;
+	}
+	
+	public String getEmail() { 
+		return email;
+	}
+	
+	public String getOtherContact() { 
+		return otherContact;
+	}
+	
+	public String getNotes() { 
+		return notes;
+	}
+	
+	public Calendar getLastContacted() { 
+		return lastContacted;
+	}
+	
+	// ---------- SETTERS -----------
+	
+	public void setName(String newName) { 
+		name = newName;
+	}
+	
+	public void setMeetingLoc(String newMeetingLoc) { 
+		meetingLoc = newMeetingLoc;
+	}
+	
+	public void setLocation(String newLocation) { 
+		location = newLocation;
+	}
+	
+	public void setCompanyOrSchool(String newCompanyOrSchool) { 
+		companyOrSchool = newCompanyOrSchool;
+	}
+	
+	public void setEmail(String newEmail) { 
+		email = newEmail;
+	}
+	
+	public void setOtherContact(String newOtherContact) { 
+		otherContact = newOtherContact;
+	}
+	
+	public void setNotes(String newNotes) { 
+		notes = newNotes;
+	}
+	
+	public void setLastContacted(Calendar newLastContacted) { 
+		lastContacted = newLastContacted;
+	}
+	
+	public String toString() { 
+		
+		
+	}
+	
+	public static void main (String[] args) { 
+		Contact cTest = new Contact("Samantha");
+	}
+	
+	
+}
