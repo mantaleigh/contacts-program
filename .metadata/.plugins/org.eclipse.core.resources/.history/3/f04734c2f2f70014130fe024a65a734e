@@ -21,20 +21,19 @@ public class ContactBook<T> {
 	 * should be called once the program is initialized to read previous user data
 	 */
 	public ContactBook(String srcFile) {
-		searchTable = new Hashtable<String, Contact>(); // create hashtable
 		try {
 			Scanner scan = new Scanner(new File(srcFile));
 			while(scan.hasNextLine()) { 
 				String line = scan.nextLine(); // one line represents a single contact
 				String[] fields = line.split("#"); // line is split up by # symbols
-				Calendar dateContacted = Calendar.getInstance(); // sets up a calendar with default date/month/year (today)
 				try {
-					setCalFromString(fields[7], dateContacted); // if there is a date set, update the calendar using the helper method to the given date/month/year of last contact
-				} catch (ArrayIndexOutOfBoundsException ex) { } // don't do anything -- keep the default date/month/year Calendar
-				Contact newPerson = new Contact(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], dateContacted);
-				searchTable.put(newPerson.getName(), newPerson);
+					Calendar dateContacted = calFromString(fields[7]);
+					Contact newPerson = new Contact(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], dateContacted);
+				} catch (ArrayIndexOutOfBoundsException ex) { 
+					Contact newPerson = new Contact(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], Calendar.getInstance());
+				}
+				
 				System.out.println(newPerson); // testing
-				System.out.println(searchTable);
 			}
 			scan.close();
 		} catch (IOException ex) { 
@@ -42,9 +41,10 @@ public class ContactBook<T> {
 		}
 	}
 	
-	// helper method that takes a typical "month day, year" formatted String and saves that information into a given Calendar object
-	private void setCalFromString(String mdy, Calendar cal) { 
+	// helper method that makes a typical "month day, year" formatted String into a Calendar object
+	private Calendar calFromString(String mdy) { 
 		String[] listOfMonths = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		Calendar cal = Calendar.getInstance();
 		String[] dateArray = mdy.split(" ");
 		String monthStr = dateArray[0];
 		int monthInt = 0;
@@ -53,6 +53,7 @@ public class ContactBook<T> {
 		int date = Integer.parseInt(dateArray[1].replace(",", "")); // get rid of the comma and change to int
 		int year = Integer.parseInt(dateArray[2]);
 		cal.set(year, monthInt, date);
+		return cal;
 	}
 	
 	public LinkedList<T> contactBookSearch(String category,
@@ -62,10 +63,6 @@ public class ContactBook<T> {
 
 	public LinkedList<T> getAllNames() {
 		return null;
-	}
-	
-	public void addContact(Contact person) { 
-		// TODO
 	}
 	
 	public static void main (String[] args) { 

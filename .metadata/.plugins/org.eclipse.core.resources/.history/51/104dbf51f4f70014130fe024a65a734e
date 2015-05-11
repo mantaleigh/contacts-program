@@ -21,7 +21,6 @@ public class ContactBook<T> {
 	 * should be called once the program is initialized to read previous user data
 	 */
 	public ContactBook(String srcFile) {
-		searchTable = new Hashtable<String, Contact>(); // create hashtable
 		try {
 			Scanner scan = new Scanner(new File(srcFile));
 			while(scan.hasNextLine()) { 
