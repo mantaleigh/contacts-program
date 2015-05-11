@@ -44,12 +44,13 @@ public class ContactBook<T> {
 	private void setCalFromString(String mmddyyyy, Calendar cal) { 
 		String[] dateArray = mmddyyyy.split("/");
 		int month = Integer.parseInt(dateArray[0])-1;
-		int date = Integer.parseInt(dateArray[1]);
+		int date = Integer.parseInt(dateArray[1]);//.replace(",", "")); // get rid of the comma and change to int
 		int year = Integer.parseInt(dateArray[2]);
 		cal.set(year, month, date);
 	}
 	
-	public LinkedList<T> contactBookSearch(String category, String specificCriteria) {
+	public LinkedList<T> contactBookSearch(String category,
+			String specificCriteria) {
 		return null;
 	}
 
@@ -62,6 +63,6 @@ public class ContactBook<T> {
 	}
 	
 	public String toString() { 
-		return searchTable.toString();
+		return Hashtable.toString();
 	}
 }

@@ -33,6 +33,8 @@ public class ContactBook<T> {
 				} catch (ArrayIndexOutOfBoundsException ex) { } // don't do anything -- keep the default date/month/year Calendar
 				Contact newPerson = new Contact(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], dateContacted);
 				searchTable.put(newPerson.getName(), newPerson); // add new contact to the hashtable
+				System.out.println(newPerson); // testing
+				//System.out.println(searchTable); // testing
 			}
 			scan.close();
 		} catch (IOException ex) { 
@@ -44,12 +46,13 @@ public class ContactBook<T> {
 	private void setCalFromString(String mmddyyyy, Calendar cal) { 
 		String[] dateArray = mmddyyyy.split("/");
 		int month = Integer.parseInt(dateArray[0])-1;
-		int date = Integer.parseInt(dateArray[1]);
+		int date = Integer.parseInt(dateArray[1]);//.replace(",", "")); // get rid of the comma and change to int
 		int year = Integer.parseInt(dateArray[2]);
 		cal.set(year, month, date);
 	}
 	
-	public LinkedList<T> contactBookSearch(String category, String specificCriteria) {
+	public LinkedList<T> contactBookSearch(String category,
+			String specificCriteria) {
 		return null;
 	}
 
@@ -59,9 +62,5 @@ public class ContactBook<T> {
 	
 	public void addContact(Contact person) { 
 		// TODO
-	}
-	
-	public String toString() { 
-		return searchTable.toString();
 	}
 }
