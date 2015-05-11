@@ -16,7 +16,6 @@
  * 
  * can use: void set(int year, int month, int date) to set a Calendar object to a date
  * 
- * 
  */
 
 
@@ -31,14 +30,21 @@ public class Contact {
     // -------- CONSTRUCTORS ---------
 	// first constructor that takes every possible instance variable in as a parameter
 	public Contact (String name, String meetingLoc, String location, String companyOrSchool, String email, String otherContact, String notes, Calendar lastContacted) { 
-		
+		this.name = name; 
+		this.meetingLoc = meetingLoc; 
+		this.location = location; 
+		this.companyOrSchool = companyOrSchool; 
+		this.email = email; 
+		this.otherContact = otherContact; 
+		this.notes = notes;
+		this.lastContacted = lastContacted;
 	}
 	
 	// second constructor that only takes the name of the contact. The rest of the contact's properties can be set using the provided setters
 	public Contact (String newName) { 
 		name = newName;
 		meetingLoc = location = companyOrSchool = email = otherContact = notes = ""; // set all other instance vars to be empty
-		lastContacted = Calendar.getInstance(); // testing
+		lastContacted = Calendar.getInstance(); // set the date last contacted to be the day that the contact is made (now)
 	}
 	
 	// ---------- GETTERS -----------
@@ -114,7 +120,7 @@ public class Contact {
 		String s = "******* CONTACT *******\nName: " + getName() + "\nMeeting Location: " + getMeetingLoc() 
 				+ "\nLocation: " + getLocation() + "\nCompany or School: " + getCompanyOrSchool() + "\nEmail: " 
 				+ getEmail() + "\nOther Contact Info: " + getOtherContact() + "\nNotes: " + getNotes() + "\nLast Contacted: "
-				+ listOfMonths[lastContacted.get(Calendar.MONTH)] + " " + lastContacted.get(Calendar.DAY_OF_MONTH) + ", " + lastContacted.get(Calendar.YEAR);	
+				+ listOfMonths[lastContacted.get(Calendar.MONTH)] + " " + lastContacted.get(Calendar.DATE) + ", " + lastContacted.get(Calendar.YEAR);	
 		return s;
 		
 	}
