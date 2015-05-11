@@ -116,10 +116,11 @@ public class Contact {
 	}
 	
 	public String toString() { 
+		String[] listOfMonths = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 		String s = "******* CONTACT *******\nName: " + getName() + "\nMeeting Location: " + getMeetingLoc() 
 				+ "\nLocation: " + getLocation() + "\nCompany or School: " + getCompanyOrSchool() + "\nEmail: " 
 				+ getEmail() + "\nOther Contact Info: " + getOtherContact() + "\nNotes: " + getNotes() + "\nLast Contacted: "
-				+ (lastContacted.get(Calendar.MONTH)+1) + "/" + lastContacted.get(Calendar.DATE) + "/" + lastContacted.get(Calendar.YEAR);	
+				+ listOfMonths[lastContacted.get(Calendar.MONTH)] + " " + lastContacted.get(Calendar.DATE) + ", " + lastContacted.get(Calendar.YEAR);	
 		return s;
 		
 	}

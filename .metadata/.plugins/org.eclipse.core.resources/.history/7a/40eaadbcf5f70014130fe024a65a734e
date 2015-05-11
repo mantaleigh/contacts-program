@@ -119,7 +119,7 @@ public class Contact {
 		String s = "******* CONTACT *******\nName: " + getName() + "\nMeeting Location: " + getMeetingLoc() 
 				+ "\nLocation: " + getLocation() + "\nCompany or School: " + getCompanyOrSchool() + "\nEmail: " 
 				+ getEmail() + "\nOther Contact Info: " + getOtherContact() + "\nNotes: " + getNotes() + "\nLast Contacted: "
-				+ (lastContacted.get(Calendar.MONTH)+1) + "/" + lastContacted.get(Calendar.DATE) + "/" + lastContacted.get(Calendar.YEAR);	
+				+ lastContacted.get(Calendar.MONTH)+1 + "/" + lastContacted.get(Calendar.DATE) + "/" + lastContacted.get(Calendar.YEAR);	
 		return s;
 		
 	}

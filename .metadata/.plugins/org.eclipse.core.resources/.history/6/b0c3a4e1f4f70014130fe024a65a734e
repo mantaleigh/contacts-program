@@ -21,7 +21,7 @@ public class ContactBook<T> {
 	 * should be called once the program is initialized to read previous user data
 	 */
 	public ContactBook(String srcFile) {
-		searchTable = new Hashtable<String, Contact>();
+		searchTable = new Hashtable<String, Contact>(); // create hashtable
 		try {
 			Scanner scan = new Scanner(new File(srcFile));
 			while(scan.hasNextLine()) { 
@@ -32,9 +32,9 @@ public class ContactBook<T> {
 					setCalFromString(fields[7], dateContacted); // if there is a date set, update the calendar using the helper method to the given date/month/year of last contact
 				} catch (ArrayIndexOutOfBoundsException ex) { } // don't do anything -- keep the default date/month/year Calendar
 				Contact newPerson = new Contact(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], dateContacted);
-				searchTable.put(newPerson.getName(), newPerson); // add new contact to the hashtable
+				searchTable.put(newPerson.getName(), newPerson);
 				System.out.println(newPerson); // testing
-				//System.out.println(searchTable); // testing
+				System.out.println(searchTable);
 			}
 			scan.close();
 		} catch (IOException ex) { 
@@ -42,13 +42,17 @@ public class ContactBook<T> {
 		}
 	}
 	
-	// helper method that takes a typical "mm/dd/yyyy" formatted String and saves that information into a given Calendar object
-	private void setCalFromString(String mmddyyyy, Calendar cal) { 
-		String[] dateArray = mmddyyyy.split("/");
-		int month = Integer.parseInt(dateArray[0])-1;
-		int date = Integer.parseInt(dateArray[1]);//.replace(",", "")); // get rid of the comma and change to int
+	// helper method that takes a typical "month day, year" formatted String and saves that information into a given Calendar object
+	private void setCalFromString(String mdy, Calendar cal) { 
+		String[] listOfMonths = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		String[] dateArray = mdy.split(" ");
+		String monthStr = dateArray[0];
+		int monthInt = 0;
+		for (int i = 0; i < listOfMonths.length; i++) // find the int that the String month corresponds to
+			if (monthStr.equals(listOfMonths[i])) monthInt = i; 
+		int date = Integer.parseInt(dateArray[1].replace(",", "")); // get rid of the comma and change to int
 		int year = Integer.parseInt(dateArray[2]);
-		cal.set(year, month, date);
+		cal.set(year, monthInt, date);
 	}
 	
 	public LinkedList<T> contactBookSearch(String category,

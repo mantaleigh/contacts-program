@@ -32,7 +32,7 @@ public class ContactBook<T> {
 					setCalFromString(fields[7], dateContacted); // if there is a date set, update the calendar using the helper method to the given date/month/year of last contact
 				} catch (ArrayIndexOutOfBoundsException ex) { } // don't do anything -- keep the default date/month/year Calendar
 				Contact newPerson = new Contact(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], dateContacted);
-				searchTable.put(newPerson.getName(), newPerson); // add new contact to the hashtable
+				searchTable.put(newPerson.getName(), newPerson);
 				System.out.println(newPerson); // testing
 				//System.out.println(searchTable); // testing
 			}
