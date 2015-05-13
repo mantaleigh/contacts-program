@@ -1,7 +1,7 @@
 import javax.swing.*;
 import javax.swing.JFormattedTextField.AbstractFormatter;
 
-import org.jdatepicker.impl.*;
+//import org.jdatepicker.impl.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +18,7 @@ public class AddTab<T> extends JPanel{
 	private JButton addPerson;
 	private TextField name, whereYouMet, location, companySchool, email, phone, lastContacted;
 	private TextArea notes;
-	private UtilDateModel model;
+	//private UtilDateModel model;
 	//private JDatePanelImpl datePanel;
 	//private JDatePickerImpl datePicker;
 	
@@ -39,9 +39,9 @@ public class AddTab<T> extends JPanel{
 		add(email);
 		phone = new TextField("Phone number");
 		add(phone);
-		model = new UtilDateModel();
-		model.setDate(2015, 5, 11); //change this to everyday's today date
-		model.setSelected(true);
+		//model = new UtilDateModel();
+		//model.setDate(2015, 5, 11); //change this to everyday's today date
+		//model.setSelected(true);
 		Properties p = new Properties();
 		p.put("text.day", "Day");
 		p.put("text.month", "Month");
