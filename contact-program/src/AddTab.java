@@ -19,8 +19,8 @@ public class AddTab<T> extends JPanel{
 	private TextField name, whereYouMet, location, companySchool, email, phone, lastContacted;
 	private TextArea notes;
 	private UtilDateModel model;
-	private JDatePanelImpl datePanel;
-	private JDatePickerImpl datePicker;
+	//private JDatePanelImpl datePanel;
+	//private JDatePickerImpl datePicker;
 	
 	
 	public AddTab(ContactBook<T> cb) {
@@ -46,9 +46,9 @@ public class AddTab<T> extends JPanel{
 		p.put("text.day", "Day");
 		p.put("text.month", "Month");
 		p.put("text.year", "Year");
-		datePanel = new JDatePanelImpl(model, p);
-		datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-		add(datePicker);
+		//datePanel = new JDatePanelImpl(model, p);
+		//datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+		//add(datePicker);
 		lastContacted = new TextField("Last contacted");
 		add(lastContacted);
 		notes = new TextArea("Notes");
@@ -70,34 +70,11 @@ public class AddTab<T> extends JPanel{
 		    	  //addedContact.setOtherContact(phone.getSelectedText();
 		    	  addedContact.setNotes(notes.getSelectedText());  
 		    	  
-		    	  Calendar selectedValue = (Calendar) datePicker.getModel().getValue();
+		    	  //Calendar selectedValue = (Calendar) datePicker.getModel().getValue();
 		    	  //Date selectedDate = selectedValue.getTime();
-		    	  addedContact.setLastContacted(selectedValue);
+		    	  //addedContact.setLastContacted(selectedValue);
 		    	  
 		      }
 		    }
 		  }
-	  //from http://www.codejava.net/java-se/swing/how-to-use-jdatepicker-to-display-calendar-component
-	  private class DateLabelFormatter extends AbstractFormatter {
-		  
-		    private String datePattern = "yyyy-MM-dd";
-		    private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
-		     
-		    @Override
-		    public Object stringToValue(String text) throws ParseException {
-		        return dateFormatter.parseObject(text);
-		    }
-		 
-		    @Override
-		    public String valueToString(Object value) throws ParseException {
-		        if (value != null) {
-		            Calendar cal = (Calendar) value;
-		            return dateFormatter.format(cal.getTime());
-		        }
-		         
-		        return "";
-		    }
-		 
-		}
-	  
 }
