@@ -26,11 +26,7 @@ public class ContactBookGUI {
 
 		JPanel mainPanel = new JPanel();
 
-		JTabbedPane home = new JTabbedPane();
-		home.addTab("Add", new AddTab(program));
-		home.addTab("Update", new UpdateTab(program));
-		home.addTab("Search", new SearchTab(program));
-		mainPanel.add(home);
+		mainPanel.add(new ContactOverview(program));
 
 		frame.getContentPane().add(mainPanel);
 		frame.pack();
