@@ -53,8 +53,9 @@ public class ContactBook<T> {
 		return null;
 	}
 
-	public LinkedList<T> getAllNames() {
-		return null;
+	public String[] getAllNames() {
+        String[] dummyNames = {"Victor", "Ophelia"};
+		return dummyNames;
 	}
 	
 	public void addContact(Contact person) { 
