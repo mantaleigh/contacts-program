@@ -53,8 +53,14 @@ public class ContactBook<T> {
 		return null;
 	}
 
+    //for testing - I need a similar method so that i can get a reference to the hashtable object from jtable
+    public Contact searchByName(String name) {
+        return searchTable.get(name);
+    }
+
+    //changed to array of strings bc that's the format for the jtable
 	public String[] getAllNames() {
-        String[] dummyNames = {"Victor", "Ophelia"};
+        String[] dummyNames = {"Victor", "Ophelia", "Sam", "Aline"};
 		return dummyNames;
 	}
 	

@@ -7,7 +7,7 @@ public class ContactBookGUI {
 	public ContactBookGUI() {
 		
 		// creates and shows a Frame
-		JFrame frame = new JFrame("Grad School Manager");
+		JFrame frame = new JFrame("Contact Book");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// get the screen size as a java dimension
