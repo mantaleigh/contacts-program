@@ -29,9 +29,9 @@ public class ContactBook<T> {
 				String[] fields = line.split("#"); // line is split up by # symbols
 				Calendar dateContacted = Calendar.getInstance(); // sets up a calendar with default date/month/year (today)
 				try {
-					setCalFromString(fields[7], dateContacted); // if there is a date set, update the calendar using the helper method to the given date/month/year of last contact
+					setCalFromString(fields[8], dateContacted); // if there is a date set, update the calendar using the helper method to the given date/month/year of last contact
 				} catch (ArrayIndexOutOfBoundsException ex) { } // don't do anything -- keep the default date/month/year Calendar
-				Contact newPerson = new Contact(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], dateContacted);
+				Contact newPerson = new Contact(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], dateContacted);
 				searchTable.put(newPerson.getName(), newPerson); // add new contact to the hashtable
 			}
 			scan.close();
@@ -49,23 +49,54 @@ public class ContactBook<T> {
 		cal.set(year, month, date);
 	}
 	
-	public LinkedList<T> contactBookSearch(String category, String specificCriteria) {
-		return null;
+	// probably won't be able to use this bc ... problems
+//	public LinkedList<Contact> contactBookSearch(String category, String specificCriteria) {
+//		return null;
+//	}
+//	
+	public LinkedList<Contact> searchByName(String criteria) { 
+		LinkedList<Contact> results = new LinkedList<Contact>();
+		Enumeration<Contact> vals = searchTable.elements(); 
+		while (vals.hasMoreElements()) { // loop through each contact
+			Contact elt = vals.nextElement();
+			String name = elt.getName().toLowerCase();
+			if (name.contains(criteria.toLowerCase())) results.add(elt);
+		}
+		return results;
 	}
+	
+//	public LinkedList<Contact> searchByMeetingLoc(String criteria) { 
+//		
+//	}
 
     //for testing - I need a similar method so that i can get a reference to the hashtable object from jtable
-    public Contact searchByName(String name) {
+    public Contact getContactByName(String name) {
         return searchTable.get(name);
     }
 
-    //changed to array of strings bc that's the format for the jtable
+    // Returns an array of Strings that has the first and last name of all Contacts in the hashtable.
 	public String[] getAllNames() {
-        String[] dummyNames = {"Victor", "Ophelia", "Sam", "Aline"};
-		return dummyNames;
+		String[] names = new String[searchTable.size()]; // provide enough space for all the names
+		Enumeration<String> keys = searchTable.keys();
+		int i = 0;
+		while (keys.hasMoreElements()) { 
+			names[i] = keys.nextElement();
+			i++;
+		}
+		return names;
 	}
 	
 	public void addContact(Contact person) { 
-		// TODO
+		searchTable.put(person.getName(), person);
+	}
+	
+	// don't know which one of the next two methods will end up being the most useful... or both?
+	public void deleteContactByName(String name) { 
+		searchTable.remove(name);
+	}
+	
+	public void deleteContactByObject(Contact person) { 
+		searchTable.remove(person.getName());
 	}
 	
 	public String toString() { 

@@ -77,7 +77,7 @@ public class ContactOverview extends JPanel{
         contactTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent event) {
                 String selectedContactName = (String) contactTable.getValueAt(contactTable.getSelectedRow(),contactTable.getSelectedColumn());
-                Contact selectedContact = cb.searchByName(selectedContactName);
+                Contact selectedContact = cb.getContactByName(selectedContactName);
                 //name.setText(selectedContact.getName());
                 System.out.println(selectedContact.getName());
             }
@@ -113,7 +113,7 @@ public class ContactOverview extends JPanel{
             if (e.getSource()==updateButton) {
                 //don't know if this is the best way to do this...
                 String selectedContactName = (String) contactTable.getValueAt(contactTable.getSelectedRow(), contactTable.getSelectedColumn());
-                Contact selectedContact = cb.searchByName(selectedContactName);
+                Contact selectedContact = cb.getContactByName(selectedContactName);
                 name.setText(selectedContact.getName());
                 city.setText(selectedContact.getLocation());
                 company.setText(selectedContact.getCompanyOrSchool());
