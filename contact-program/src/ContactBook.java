@@ -54,22 +54,110 @@ public class ContactBook<T> {
 //		return null;
 //	}
 //	
+	
+	//**********************************************************************
+	//*********************** SEARCHING METHODS ****************************
+	//**********************************************************************
+	
+	// returns a linkedList of all contacts that fit the criteria given for searching by name. Not case sensitive.
 	public LinkedList<Contact> searchByName(String criteria) { 
 		LinkedList<Contact> results = new LinkedList<Contact>();
 		Enumeration<Contact> vals = searchTable.elements(); 
 		while (vals.hasMoreElements()) { // loop through each contact
 			Contact elt = vals.nextElement();
-			String name = elt.getName().toLowerCase();
-			if (name.contains(criteria.toLowerCase())) results.add(elt);
+			String name = elt.getName().toLowerCase().replace(" ", "");
+			if (name.contains(criteria.toLowerCase().replace(" ", ""))) results.add(elt);
 		}
 		return results;
 	}
 	
-//	public LinkedList<Contact> searchByMeetingLoc(String criteria) { 
-//		
-//	}
+	// returns a linkedList of all contacts that fit the criteria given for searching by meeting location. Not case sensitive.
+	public LinkedList<Contact> searchByMeetingLoc(String criteria) { 
+		LinkedList<Contact> results = new LinkedList<Contact>(); 
+		Enumeration<Contact> vals = searchTable.elements();
+		while (vals.hasMoreElements()) { 
+			Contact elt = vals.nextElement(); 
+			String meetingLoc = elt.getMeetingLoc().toLowerCase().replace(" ", "");
+			if (meetingLoc.contains(criteria.toLowerCase().replace(" ", ""))) results.add(elt);
+		}
+		return results;
+	}
+	
+	// returns a linkedList of all contacts that fit the criteria given for searching by location. Not case sensitive.
+	public LinkedList<Contact> searchByLocation(String criteria) { 
+		LinkedList<Contact> results = new LinkedList<Contact>(); 
+		Enumeration<Contact> vals = searchTable.elements();
+		while (vals.hasMoreElements()) { 
+			Contact elt = vals.nextElement(); 
+			String location = elt.getLocation().toLowerCase().replace(" ", "");
+			if (location.contains(criteria.toLowerCase().replace(" ", ""))) results.add(elt);
+		}
+		return results;
+	}
+	
+	// returns a linkedList of all contacts that fit the criteria given for searching by company or school. Not case sensitive.
+	public LinkedList<Contact> searchByCompanyOrSchool(String criteria) { 
+		LinkedList<Contact> results = new LinkedList<Contact>(); 
+		Enumeration<Contact> vals = searchTable.elements();
+		while (vals.hasMoreElements()) { 
+			Contact elt = vals.nextElement(); 
+			String companyOrSchool = elt.getCompanyOrSchool().toLowerCase().replace(" ", "");
+			if (companyOrSchool.contains(criteria.toLowerCase().replace(" ", ""))) results.add(elt);
+		}
+		return results;
+	}
+	
+	// returns a linkedList of all contacts that fit the criteria given for searching by phone. Not case sensitive.
+	public LinkedList<Contact> searchByPhone(String criteria) { 
+		LinkedList<Contact> results = new LinkedList<Contact>(); 
+		Enumeration<Contact> vals = searchTable.elements();
+		while (vals.hasMoreElements()) { 
+			Contact elt = vals.nextElement(); 
+			String phone = elt.getPhone().toLowerCase().replace(" ", "").replace("-", "");
+			if (phone.contains(criteria.toLowerCase().replace(" ", "").replace("-", ""))) results.add(elt);
+		}
+		return results;
+	}
+	
+	// returns a linkedList of all contacts that fit the criteria given for searching by email. Not case sensitive.
+	public LinkedList<Contact> searchByEmail(String criteria) { 
+		LinkedList<Contact> results = new LinkedList<Contact>(); 
+		Enumeration<Contact> vals = searchTable.elements();
+		while (vals.hasMoreElements()) { 
+			Contact elt = vals.nextElement(); 
+			String email = elt.getEmail().toLowerCase().replace(" ", "");
+			if (email.contains(criteria.toLowerCase().replace(" ", ""))) results.add(elt);
+		}
+		return results;
+	}
+	
+	// returns a linkedList of all contacts that fit the criteria given for searching by other contact info. Not case sensitive. Spaces don't matter.
+	public LinkedList<Contact> searchByOtherContact(String criteria) { 
+		LinkedList<Contact> results = new LinkedList<Contact>(); 
+		Enumeration<Contact> vals = searchTable.elements();
+		while (vals.hasMoreElements()) { 
+			Contact elt = vals.nextElement(); 
+			String otherContact = elt.getOtherContact().toLowerCase().replace(" ", "");
+			if (otherContact.contains(criteria.toLowerCase().replace(" ", ""))) results.add(elt);
+		}
+		return results;
+	}
 
-    //for testing - I need a similar method so that i can get a reference to the hashtable object from jtable
+	// returns a linkedList of all contacts that fit the criteria given for searching by other contact info. Not case sensitive. Spaces don't matter.
+	public LinkedList<Contact> searchByNotes(String criteria) { 
+		LinkedList<Contact> results = new LinkedList<Contact>(); 
+		Enumeration<Contact> vals = searchTable.elements();
+		while (vals.hasMoreElements()) { 
+			Contact elt = vals.nextElement(); 
+			String notes = elt.getNotes().toLowerCase().replace(" ", "");
+			if (notes.contains(criteria.toLowerCase().replace(" ", ""))) results.add(elt);
+		}
+		return results;
+	}
+	
+	//**************************************************************************************
+	
+    // use this method to get the contact from an entire name -- for displaying information to the right of the table
     public Contact getContactByName(String name) {
         return searchTable.get(name);
     }
@@ -86,15 +174,19 @@ public class ContactBook<T> {
 		return names;
 	}
 	
+	// adds a contact to the contact book
 	public void addContact(Contact person) { 
 		searchTable.put(person.getName(), person);
 	}
 	
 	// don't know which one of the next two methods will end up being the most useful... or both?
+	
+	// deletes a contact by passing in a name
 	public void deleteContactByName(String name) { 
 		searchTable.remove(name);
 	}
 	
+	// deletes a contact by passing in an object
 	public void deleteContactByObject(Contact person) { 
 		searchTable.remove(person.getName());
 	}
