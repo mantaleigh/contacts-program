@@ -22,7 +22,7 @@ public class ContactBookGUI {
 		frame.setPreferredSize(new Dimension(width, height));
 
 		// creates an instance of a ContactBook
-		ContactBook<Contact> program = new ContactBook<Contact>("testFile.txt"); // test file is temp
+		ContactBook<Contact> program = new ContactBook<Contact>("./contact-program/testFile.txt"); // test file is temp
 		// in the future, this should be a conditional that checks if a file of the correct name exists. 
 		// if the file does exist, create a ContactBook out of that file. If the file does not exist, create an empty one.
 

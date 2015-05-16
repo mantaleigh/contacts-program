@@ -73,16 +73,21 @@ public class ContactOverview extends JPanel{
         JScrollPane scrollPane = new JScrollPane(contactTable);
         contactTable.setFillsViewportHeight(true);
         contactTable.setPreferredScrollableViewportSize(new Dimension(120, 200));
-        /*
+
         contactTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent event) {
                 String selectedContactName = (String) contactTable.getValueAt(contactTable.getSelectedRow(),contactTable.getSelectedColumn());
                 Contact selectedContact = cb.getContactByName(selectedContactName);
-                //name.setText(selectedContact.getName());
-                System.out.println(selectedContact.getName());
+                name.setText(selectedContact.getName());
+                city.setText(selectedContact.getLocation());
+                company.setText(selectedContact.getCompanyOrSchool());
+                meetingLoc.setText(selectedContact.getMeetingLoc());
+                email.setText(selectedContact.getEmail());
+                phone.setText(selectedContact.getOtherContact());
+                notes.setText(selectedContact.getNotes());
             }
         });
-        */
+
 
         westPanel.add(scrollPane);
         //add(westPanel);
@@ -95,9 +100,11 @@ public class ContactOverview extends JPanel{
         
         southPanel = new JPanel();
         updateButton = new JButton("Update");
+        updateButton.addActionListener(new ButtonListener());
         southPanel.add(updateButton);
         newButton = new JButton("New");
         southPanel.add(newButton);
+        newButton.addActionListener(new ButtonListener());
         editButton = new JButton("Edit");
         southPanel.add(editButton);
         deleteButton = new JButton("Delete");
@@ -123,7 +130,8 @@ public class ContactOverview extends JPanel{
                 notes.setText(selectedContact.getNotes());
             }
             if (e.getSource()==newButton) {
-                //??
+                cb.addContact(new Contact("New Contact"));
+
             }
         }
     }
