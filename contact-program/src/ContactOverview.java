@@ -16,14 +16,15 @@ import java.util.*;
 public class ContactOverview extends JPanel{
 
     private ContactBook<Contact> cb;
-    private JLabel searchBy;
+    private JLabel searchBy, searchResult;
     private JComboBox<String> searchCriteria;
+    private DefaultComboBoxModel<String> searchResultData;
     private String[] searchCriteriaData = {"Name", "School", "City"}; //yadda yadda - Use contactBook's?
     private JTextField searchDetail;
     private JButton findButton;
-    private JComboBox<String> searchResult;
+    private JComboBox<String> contactSearch;
     private JPanel northPanel, westPanel, eastPanel, southPanel;
-    private JLabel name, city, company, meetingLoc, email, phone, notes;
+    private JTextField name, city, company, meetingLoc, email, phone, notes;
     private JButton newButton, editButton, deleteButton, updateButton;
 
     public ContactOverview(ContactBook program){
@@ -43,9 +44,12 @@ public class ContactOverview extends JPanel{
         add(northPanel);
 
         westPanel = new JPanel();
-        searchResult = new JComboBox<>(cb.getAllNames());
-        searchResult.addItemListener(new ComboBoxListener());
+        searchResult = new JLabel("Search results");
         westPanel.add(searchResult);
+        searchResultData = new DefaultComboBoxModel<String>(cb.getAllNames());
+        contactSearch = new JComboBox<>(searchResultData);
+        contactSearch.addItemListener(new ComboBoxListener());
+        westPanel.add(contactSearch);
         add(westPanel);
 
         eastPanel = new JPanel();
@@ -53,25 +57,25 @@ public class ContactOverview extends JPanel{
         eastPanel.add(new JLabel("Contact information"));
         eastPanel.add(new JLabel());
         eastPanel.add(new JLabel("Name:"));
-        name = new JLabel("");
+        name = new JTextField("");
         eastPanel.add(name);
         eastPanel.add(new JLabel("City:"));
-        city = new JLabel("");
+        city = new JTextField("");
         eastPanel.add(city);
         eastPanel.add(new JLabel("Company:"));
-        company = new JLabel("");
+        company = new JTextField("");
         eastPanel.add(company);
         eastPanel.add(new JLabel("Meeting Location:"));
-        meetingLoc = new JLabel("");
+        meetingLoc = new JTextField("");
         eastPanel.add(meetingLoc);
         eastPanel.add(new JLabel("Email:"));
-        email = new JLabel("");
+        email = new JTextField("");
         eastPanel.add(email);
         eastPanel.add(new JLabel("Phone:"));
-        phone = new JLabel("");
+        phone = new JTextField("");
         eastPanel.add(phone);
         eastPanel.add(new JLabel("Notes:"));
-        notes = new JLabel("");
+        notes = new JTextField("");
         eastPanel.add(notes);
         add(eastPanel);
         
@@ -103,7 +107,6 @@ public class ContactOverview extends JPanel{
                 email.setText(selectedContact.getEmail());
                 phone.setText(selectedContact.getOtherContact());
                 notes.setText(selectedContact.getNotes());
-
             }
         }
     }
@@ -126,14 +129,21 @@ public class ContactOverview extends JPanel{
                 */
             }
             if (e.getSource()==newButton) {
-                Contact newContact = new Contact("New Contact");
+                Contact newContact = new Contact(name.getText());
                 cb.addContact(newContact);
-                //model.fireTableDataChanged(); //
-                //contactTable.setValueAt(newContact.getName(),5,0);
-                //???
+                searchResultData.addElement(name.getText());
+
+            }
+            if (e.getSource()==deleteButton) {
+                cb.deleteContactByName(name.getText());
+                searchResultData.removeElement(name.getText());
             }
             if (e.getSource()==findButton) {
-
+                searchResultData.removeAllElements();
+                //String criteria = (String)searchCriteria.getSelectedItem();
+                //String detail = searchDetail.getText();
+                //String[] newSearch = cb.
+                //searchCriteriaData.add
             }
             //if (e.getSource())
         }
