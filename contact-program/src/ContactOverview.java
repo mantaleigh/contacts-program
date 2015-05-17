@@ -6,6 +6,8 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.util.*;
 
 /**
@@ -19,9 +21,8 @@ public class ContactOverview extends JPanel{
     private String[] searchCriteriaData = {"Name", "School", "City"}; //yadda yadda - Use contactBook's?
     private JTextField searchDetail;
     private JButton findButton;
-    private JTable contactTable;
-    private DefaultTableModel model;
-    private JPanel northPanel, westPanel, eastPanel, southPanel, centralPanel;
+    private JComboBox<String> searchResult;
+    private JPanel northPanel, westPanel, eastPanel, southPanel;
     private JLabel name, city, company, meetingLoc, email, phone, notes;
     private JButton newButton, editButton, deleteButton, updateButton;
 
@@ -37,8 +38,15 @@ public class ContactOverview extends JPanel{
         searchDetail = new JTextField("Search Details");
         northPanel.add(searchDetail);
         findButton = new JButton("Find");
+        findButton.addActionListener(new ButtonListener());
         northPanel.add(findButton);
         add(northPanel);
+
+        westPanel = new JPanel();
+        searchResult = new JComboBox<>(cb.getAllNames());
+        searchResult.addItemListener(new ComboBoxListener());
+        westPanel.add(searchResult);
+        add(westPanel);
 
         eastPanel = new JPanel();
         eastPanel.setLayout(new GridLayout(8,2));
@@ -65,38 +73,7 @@ public class ContactOverview extends JPanel{
         eastPanel.add(new JLabel("Notes:"));
         notes = new JLabel("");
         eastPanel.add(notes);
-
-        westPanel = new JPanel();
-        model = new DefaultTableModel();
-        model.addColumn("Contacts", cb.getAllNames());
-        contactTable = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(contactTable);
-        contactTable.setFillsViewportHeight(true);
-        contactTable.setPreferredScrollableViewportSize(new Dimension(120, 200));
-
-        contactTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            public void valueChanged(ListSelectionEvent event) {
-                String selectedContactName = (String) contactTable.getValueAt(contactTable.getSelectedRow(),contactTable.getSelectedColumn());
-                Contact selectedContact = cb.getContactByName(selectedContactName);
-                name.setText(selectedContact.getName());
-                city.setText(selectedContact.getLocation());
-                company.setText(selectedContact.getCompanyOrSchool());
-                meetingLoc.setText(selectedContact.getMeetingLoc());
-                email.setText(selectedContact.getEmail());
-                phone.setText(selectedContact.getOtherContact());
-                notes.setText(selectedContact.getNotes());
-            }
-        });
-
-
-        westPanel.add(scrollPane);
-        //add(westPanel);
-
-        centralPanel = new JPanel();
-        centralPanel.setLayout(new BoxLayout(centralPanel, BoxLayout.X_AXIS));
-        centralPanel.add(westPanel);
-        centralPanel.add(eastPanel);
-        add(centralPanel);
+        add(eastPanel);
         
         southPanel = new JPanel();
         updateButton = new JButton("Update");
@@ -113,12 +90,30 @@ public class ContactOverview extends JPanel{
 
         //getSelectedRow()
     }
+    private class ComboBoxListener implements ItemListener {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                String selectedContactName = (String) e.getItem();
+                Contact selectedContact = cb.getContactByName(selectedContactName);
+                name.setText(selectedContact.getName());
+                city.setText(selectedContact.getLocation());
+                company.setText(selectedContact.getCompanyOrSchool());
+                meetingLoc.setText(selectedContact.getMeetingLoc());
+                email.setText(selectedContact.getEmail());
+                phone.setText(selectedContact.getOtherContact());
+                notes.setText(selectedContact.getNotes());
+
+            }
+        }
+    }
 
     private class ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource()==updateButton) {
                 //don't know if this is the best way to do this...
+                /*
                 String selectedContactName = (String) contactTable.getValueAt(contactTable.getSelectedRow(), contactTable.getSelectedColumn());
                 Contact selectedContact = cb.getContactByName(selectedContactName);
                 name.setText(selectedContact.getName());
@@ -128,11 +123,19 @@ public class ContactOverview extends JPanel{
                 email.setText(selectedContact.getEmail());
                 phone.setText(selectedContact.getOtherContact());
                 notes.setText(selectedContact.getNotes());
+                */
             }
             if (e.getSource()==newButton) {
-                cb.addContact(new Contact("New Contact"));
+                Contact newContact = new Contact("New Contact");
+                cb.addContact(newContact);
+                //model.fireTableDataChanged(); //
+                //contactTable.setValueAt(newContact.getName(),5,0);
+                //???
+            }
+            if (e.getSource()==findButton) {
 
             }
+            //if (e.getSource())
         }
     }
 }
