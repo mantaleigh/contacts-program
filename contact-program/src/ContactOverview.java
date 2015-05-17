@@ -150,7 +150,7 @@ public class ContactOverview extends JPanel{
                 } else if (category.equals("Phone")) { 
                 	results = cb.searchByOtherContact(detail);
                 } else if (category.equals("Notes")) { 
-                	results = cb.searchByCompanyOrSchool(detail);
+                	results = cb.searchByNotes(detail);
                 }
                 
                 for (int i = 0; i < results.size(); i++) { 
