@@ -19,11 +19,12 @@ public class ContactOverview extends JPanel{
     private JLabel searchBy, searchResult;
     private JComboBox<String> searchCriteria;
     private DefaultComboBoxModel<String> searchResultData;
-    private String[] searchCriteriaData = {"Name", "City", "Company/School", "Meeting Location", "Email", "Phone", "Notes"}; 
+    private String[] searchCriteriaData = {"Name", "City", "Company/School"}; //yadda yadda - Use contactBook's?
+    private JTextField searchDetail;
     private JButton findButton;
     private JComboBox<String> contactSearch;
     private JPanel northPanel, westPanel, eastPanel, southPanel;
-    private JTextField name, city, company, meetingLoc, email, phone, notes, searchDetail;
+    private JTextField name, city, company, meetingLoc, email, phone, notes;
     private JButton newButton, editButton, deleteButton, updateButton;
 
     public ContactOverview(ContactBook program){

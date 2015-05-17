@@ -23,7 +23,7 @@ public class ContactOverview extends JPanel{
     private JButton findButton;
     private JComboBox<String> contactSearch;
     private JPanel northPanel, westPanel, eastPanel, southPanel;
-    private JTextField name, city, company, meetingLoc, email, phone, notes, searchDetail;
+    private JTextField name, city, company, meetingLoc, email, phone, notes;
     private JButton newButton, editButton, deleteButton, updateButton;
 
     public ContactOverview(ContactBook program){
