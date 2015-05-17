@@ -1,9 +1,4 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
-import javax.swing.event.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -35,9 +30,8 @@ public class ContactOverview extends JPanel{
         searchBy = new JLabel("Search by");
         northPanel.add(searchBy);
         searchCriteria = new JComboBox<>(searchCriteriaData);
-        searchCriteria.setSelectedItem(null);
         northPanel.add(searchCriteria);
-        searchDetail = new JTextField("Search Details");
+        searchDetail = new JTextField("Search Details", 12);
         northPanel.add(searchDetail);
         findButton = new JButton("Find");
         findButton.addActionListener(new ButtonListener());
@@ -55,7 +49,10 @@ public class ContactOverview extends JPanel{
         add(westPanel);
 
         eastPanel = new JPanel();
-        eastPanel.setLayout(new GridLayout(9,2));
+        GridLayout grid = new GridLayout(9,2);
+        grid.setVgap(10);
+        //grid.setHgap(20);
+        eastPanel.setLayout(grid);
         eastPanel.add(new JLabel("Contact information"));
         eastPanel.add(new JLabel());
         eastPanel.add(new JLabel("Name:"));
@@ -83,7 +80,9 @@ public class ContactOverview extends JPanel{
         lastContacted = new JLabel("");
         eastPanel.add(lastContacted);
         add(eastPanel);
-        
+
+        add(Box.createVerticalStrut(10));
+
         southPanel = new JPanel();
         newButton = new JButton("New");
         southPanel.add(newButton);

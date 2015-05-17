@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.*;
+
 
 /**
  * Created by amitsuzawa on 5/17/15.
@@ -23,7 +23,8 @@ public class ContactChanges extends JFrame implements ActionListener{
         cb = program;
         //System.out.print(cb);
         infoPanel = new JPanel();
-        infoPanel.setLayout(new GridLayout(10, 2));
+        GridLayout grid = new GridLayout(10,2);
+        infoPanel.setLayout(grid);
         infoPanel.add(new JLabel("Contact information"));
         infoPanel.add(new JLabel());
         infoPanel.add(new JLabel("Name:"));
@@ -60,6 +61,7 @@ public class ContactChanges extends JFrame implements ActionListener{
         infoPanel.add(submit);
         submit.addActionListener(this);
 
+        infoPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         add(infoPanel);
 
         getContentPane().add(infoPanel);

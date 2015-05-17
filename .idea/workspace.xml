@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="013249f3-70b6-432b-b42a-ce8705135601" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/contact-program/src/AddTab.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/bin/ContactBookDriver.class" afterPath="$PROJECT_DIR$/contact-program/bin/ContactBookDriver.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/bin/ContactChanges.class" afterPath="$PROJECT_DIR$/contact-program/bin/ContactChanges.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/bin/ContactOverview$ButtonListener.class" afterPath="$PROJECT_DIR$/contact-program/bin/ContactOverview$ButtonListener.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/bin/ContactOverview$ComboBoxListener.class" afterPath="$PROJECT_DIR$/contact-program/bin/ContactOverview$ComboBoxListener.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/bin/ContactOverview.class" afterPath="$PROJECT_DIR$/contact-program/bin/ContactOverview.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/src/ContactBook.java" afterPath="$PROJECT_DIR$/contact-program/src/ContactBook.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/src/ContactChanges.java" afterPath="$PROJECT_DIR$/contact-program/src/ContactChanges.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/src/ContactOverview.java" afterPath="$PROJECT_DIR$/contact-program/src/ContactOverview.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contactFile.txt" afterPath="$PROJECT_DIR$/contactFile.txt" />
@@ -36,11 +37,11 @@
       <file leaf-file-name="ContactOverview.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contact-program/src/ContactOverview.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.83102494">
-              <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.3739612">
+              <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6147#6156#0" expanded="true" />
+                <element signature="e#6078#6087#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -50,8 +51,10 @@
         <entry file="file://$PROJECT_DIR$/contact-program/src/ContactBookDriver.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-              <folding />
+              <caret line="3" column="2" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding>
+                <element signature="e#126#127#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/contactFile.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -70,7 +73,7 @@
         <entry file="file://$PROJECT_DIR$/contact-program/src/ContactChanges.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,7 +84,7 @@
       <file leaf-file-name="ContactBook.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contact-program/src/ContactBook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.1851852">
+            <state vertical-scroll-proportion="-47.22222">
               <caret line="172" column="44" selection-start-line="172" selection-start-column="44" selection-end-line="172" selection-end-column="44" />
               <folding>
                 <element signature="e#0#10722#0" expanded="true" />
@@ -126,8 +129,8 @@
         <option value="$PROJECT_DIR$/contactFile.txt" />
         <option value="$PROJECT_DIR$/contact-program/src/ContactBookGUI.java" />
         <option value="$PROJECT_DIR$/contact-program/src/ContactBookDriver.java" />
-        <option value="$PROJECT_DIR$/contact-program/src/ContactChanges.java" />
         <option value="$PROJECT_DIR$/contact-program/src/ContactBook.java" />
+        <option value="$PROJECT_DIR$/contact-program/src/ContactChanges.java" />
         <option value="$PROJECT_DIR$/contact-program/src/ContactOverview.java" />
       </list>
     </option>
@@ -140,8 +143,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="16" />
-    <option name="y" value="68" />
+    <option name="x" value="-14" />
+    <option name="y" value="26" />
     <option name="width" value="1200" />
     <option name="height" value="672" />
   </component>
@@ -511,7 +514,7 @@
       <updated>1431643954123</updated>
       <workItem from="1431643958715" duration="14383000" />
       <workItem from="1431817838458" duration="7554000" />
-      <workItem from="1431827992874" duration="29297000" />
+      <workItem from="1431827992874" duration="32350000" />
     </task>
     <task id="LOCAL-00001" summary="Buggy">
       <created>1431828898819</created>
@@ -523,10 +526,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51234000" />
+    <option name="totallyTimeSpent" value="54287000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="16" y="68" width="1200" height="672" extended-state="0" />
+    <frame x="-14" y="26" width="1200" height="672" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -597,7 +600,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6147#6156#0" expanded="true" />
+            <element signature="e#6078#6087#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -672,7 +675,7 @@
           <caret line="120" column="58" selection-start-line="120" selection-start-column="58" selection-end-line="120" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6147#6156#0" expanded="true" />
+            <element signature="e#6078#6087#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -753,14 +756,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contact-program/src/AddTab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/contact-program/src/Contact.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.444445">
@@ -787,35 +782,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contactFile.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contact-program/src/ContactBookDriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contact-program/src/ContactChanges.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/contact-program/src/ContactBook.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.1851852">
+        <state vertical-scroll-proportion="-47.22222">
           <caret line="172" column="44" selection-start-line="172" selection-start-column="44" selection-end-line="172" selection-end-column="44" />
           <folding>
             <element signature="e#0#10722#0" expanded="true" />
@@ -826,13 +795,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contact-program/src/ContactOverview.java">
+    <entry file="file://$PROJECT_DIR$/contactFile.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83102494">
-          <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contact-program/src/ContactBookDriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="2" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#126#127#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contact-program/src/ContactChanges.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6147#6156#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contact-program/src/ContactOverview.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3739612">
+          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6078#6087#0" expanded="true" />
           </folding>
         </state>
       </provider>
