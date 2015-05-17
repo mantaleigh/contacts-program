@@ -3,8 +3,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.event.*;
-
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.awt.event.*;
 import java.util.*;
 
@@ -44,8 +46,8 @@ public class ContactOverview extends JPanel{
         westPanel = new JPanel();
         searchResult = new JLabel("Search results");
         westPanel.add(searchResult);
-        searchResultData = new DefaultComboBoxModel<String>(cb.getAllNames());
-        contactSearch = new JComboBox<>(searchResultData);
+        searchCriteriaData = new DefaultComboBoxModel<String>(cb.getAllNames());
+        contactSearch = new JComboBox<>(searchCriteriaData);
         contactSearch.addItemListener(new ComboBoxListener());
         westPanel.add(contactSearch);
         add(westPanel);
@@ -136,11 +138,15 @@ public class ContactOverview extends JPanel{
                 cb.deleteContactByName(name.getText());
                 
                 searchResultData.removeElement(name.getText());
-
+=======
+                //model.fireTableDataChanged(); //
+                //contactTable.setValueAt(newContact.getName(),5,0);
+                //???
+>>>>>>> Stashed changes
             }
             if (e.getSource()==findButton) {
 
-                searchResultData.removeAllElements();
+                searchCriteriaData.removeAllElements();
                 //searchCriteriaData.add
             }
             //if (e.getSource())

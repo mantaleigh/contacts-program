@@ -136,7 +136,11 @@ public class ContactOverview extends JPanel{
                 cb.deleteContactByName(name.getText());
                 
                 searchResultData.removeElement(name.getText());
-
+=======
+                //model.fireTableDataChanged(); //
+                //contactTable.setValueAt(newContact.getName(),5,0);
+                //???
+>>>>>>> Stashed changes
             }
             if (e.getSource()==findButton) {
 
