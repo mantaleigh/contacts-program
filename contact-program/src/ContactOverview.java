@@ -18,13 +18,13 @@ public class ContactOverview extends JPanel{
     private ContactBook<Contact> cb;
     private JLabel searchBy, searchResult;
     private JComboBox<String> searchCriteria;
-    private DefaultComboBoxModel<String> searchResultData;
-    private String[] searchCriteriaData = {"Name", "School", "City"}; //yadda yadda - Use contactBook's?
+    private DefaultComboBoxModel<String> searchCriteriaData;
+    //private String[] searchCriteriaData = {"Name", "School", "City"}; //yadda yadda - Use contactBook's?
     private JTextField searchDetail;
     private JButton findButton;
     private JComboBox<String> contactSearch;
     private JPanel northPanel, westPanel, eastPanel, southPanel;
-    private JTextField name, city, company, meetingLoc, email, phone, notes;
+    private JLabel name, city, company, meetingLoc, email, phone, notes;
     private JButton newButton, editButton, deleteButton, updateButton;
 
     public ContactOverview(ContactBook program){
@@ -46,8 +46,8 @@ public class ContactOverview extends JPanel{
         westPanel = new JPanel();
         searchResult = new JLabel("Search results");
         westPanel.add(searchResult);
-        searchResultData = new DefaultComboBoxModel<String>(cb.getAllNames());
-        contactSearch = new JComboBox<>(searchResultData);
+        searchCriteriaData = new DefaultComboBoxModel<String>(cb.getAllNames());
+        contactSearch = new JComboBox<>(searchCriteriaData);
         contactSearch.addItemListener(new ComboBoxListener());
         westPanel.add(contactSearch);
         add(westPanel);
@@ -57,25 +57,25 @@ public class ContactOverview extends JPanel{
         eastPanel.add(new JLabel("Contact information"));
         eastPanel.add(new JLabel());
         eastPanel.add(new JLabel("Name:"));
-        name = new JTextField("");
+        name = new JLabel("");
         eastPanel.add(name);
         eastPanel.add(new JLabel("City:"));
-        city = new JTextField("");
+        city = new JLabel("");
         eastPanel.add(city);
         eastPanel.add(new JLabel("Company:"));
-        company = new JTextField("");
+        company = new JLabel("");
         eastPanel.add(company);
         eastPanel.add(new JLabel("Meeting Location:"));
-        meetingLoc = new JTextField("");
+        meetingLoc = new JLabel("");
         eastPanel.add(meetingLoc);
         eastPanel.add(new JLabel("Email:"));
-        email = new JTextField("");
+        email = new JLabel("");
         eastPanel.add(email);
         eastPanel.add(new JLabel("Phone:"));
-        phone = new JTextField("");
+        phone = new JLabel("");
         eastPanel.add(phone);
         eastPanel.add(new JLabel("Notes:"));
-        notes = new JTextField("");
+        notes = new JLabel("");
         eastPanel.add(notes);
         add(eastPanel);
         
@@ -129,7 +129,7 @@ public class ContactOverview extends JPanel{
                 */
             }
             if (e.getSource()==newButton) {
-                Contact newContact = new Contact(name.getText());
+                Contact newContact = new Contact("New Contact");
                 cb.addContact(newContact);
                 searchResultData.addElement(name.getText());
 
@@ -138,12 +138,15 @@ public class ContactOverview extends JPanel{
                 cb.deleteContactByName(name.getText());
                 
                 searchResultData.removeElement(name.getText());
+=======
+                //model.fireTableDataChanged(); //
+                //contactTable.setValueAt(newContact.getName(),5,0);
+                //???
+>>>>>>> Stashed changes
             }
             if (e.getSource()==findButton) {
-                searchResultData.removeAllElements();
-                //String criteria = (String)searchCriteria.getSelectedItem();
-                //String detail = searchDetail.getText();
-                //String[] newSearch = cb.
+
+                searchCriteriaData.removeAllElements();
                 //searchCriteriaData.add
             }
             //if (e.getSource())
