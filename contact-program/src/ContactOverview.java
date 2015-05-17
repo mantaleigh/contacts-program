@@ -18,13 +18,13 @@ public class ContactOverview extends JPanel{
     private JLabel searchBy, searchResult;
     private JComboBox<String> searchCriteria;
     protected DefaultComboBoxModel<String> searchResultData;
-    private String[] searchCriteriaData = {"Name", "City", "Company/School", "Meeting Location", "Email", "Phone", "Notes"}; 
+    private String[] searchCriteriaData = {"All Contacts", "Name", "City", "Company/School", "Meeting Location", "Email", "Phone", "Notes"};
     private JButton findButton;
     private JComboBox<String> contactSearch;
     private JPanel northPanel, westPanel, eastPanel, southPanel;
     protected JLabel name, city, company, meetingLoc, email, phone, notes, lastContacted;
     private JTextField searchDetail;
-    private JButton newButton, editButton, deleteButton, refreshButton;
+    private JButton newButton, editButton, deleteButton;
     private ContactOverview mainPanel;
 
     public ContactOverview(ContactBook program){
@@ -47,7 +47,7 @@ public class ContactOverview extends JPanel{
         westPanel = new JPanel();
         searchResult = new JLabel("Search results");
         westPanel.add(searchResult);
-        searchResultData = new DefaultComboBoxModel<>(cb.getAllNames());
+        searchResultData = new DefaultComboBoxModel<>();
         contactSearch = new JComboBox<>(searchResultData);
         contactSearch.setSelectedItem(null);
         contactSearch.addItemListener(new ComboBoxListener());
@@ -126,18 +126,30 @@ public class ContactOverview extends JPanel{
             	Contact stub = new Contact("New Contact");
                 cb.addContact(stub);
                 JFrame popup = new ContactChanges(mainPanel, cb, stub);
-                searchResultData.addElement(stub.getName()); //???
+                searchResultData.addElement(stub.getName());
             }
             if (e.getSource()==deleteButton) {
                 cb.deleteContactByName(name.getText());
                 searchResultData.removeElement(name.getText());
+                contactSearch.setSelectedItem(null);
+                //check if there's better way to do this!!!
+                name.setText("");
+                city.setText("");
+                company.setText("");
+                meetingLoc.setText("");
+                email.setText("");
+                phone.setText("");
+                notes.setText("");
+                lastContacted.setText("");
             }
             if (e.getSource()==findButton) {
             	String detail = searchDetail.getText();
             	String category = searchCriteria.getSelectedItem().toString();
                 searchResultData.removeAllElements();
                 LinkedList<Contact> results = new LinkedList<Contact>();
-                if (category.equals("Name")) { 
+                if (category.equals("All Contacts")) {
+                    results = cb.getAllContacts();
+                } else if (category.equals("Name")) {
                 	results = cb.searchByName(detail);
                 } else if (category.equals("City")) { 
                 	results = cb.searchByLocation(detail);
@@ -152,16 +164,26 @@ public class ContactOverview extends JPanel{
                 } else if (category.equals("Notes")) { 
                 	results = cb.searchByNotes(detail);
                 }
-                
-                for (int i = 0; i < results.size(); i++) { 
-                	searchResultData.addElement(results.get(i).getName());
+
+                if(results.isEmpty()) {
+                    name.setText("");
+                    city.setText("");
+                    company.setText("");
+                    meetingLoc.setText("");
+                    email.setText("");
+                    phone.setText("");
+                    notes.setText("");
+                    lastContacted.setText("");
+                } else {
+                    for (int i = 0; i < results.size(); i++) {
+                        searchResultData.addElement(results.get(i).getName());
+                    }
                 }
             }
             if (e.getSource()==editButton) {
                 String selectedContactName = (String) contactSearch.getSelectedItem();
                 Contact selectedContact = cb.getContactByName(selectedContactName);
                 JFrame popup = new ContactChanges(mainPanel, cb, selectedContact);
-
             }
         }
     }

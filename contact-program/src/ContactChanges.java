@@ -12,7 +12,7 @@ public class ContactChanges extends JFrame implements ActionListener{
 
     private ContactBook<Contact> cb;
     private JTextField name, city, company, meetingLoc, email, phone, notes, lastContacted;
-    private JPanel eastPanel;
+    private JPanel infoPanel;
     private JButton submit;
     private String oldName;
     private ContactOverview mainPanel;
@@ -22,62 +22,76 @@ public class ContactChanges extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         cb = program;
         //System.out.print(cb);
-        eastPanel = new JPanel();
-        eastPanel.setLayout(new GridLayout(10, 2));
-        eastPanel.add(new JLabel("Contact information"));
-        eastPanel.add(new JLabel());
-        eastPanel.add(new JLabel("Name:"));
+        infoPanel = new JPanel();
+        infoPanel.setLayout(new GridLayout(10, 2));
+        infoPanel.add(new JLabel("Contact information"));
+        infoPanel.add(new JLabel());
+        infoPanel.add(new JLabel("Name:"));
         oldName = selectedContact.getName();
         name = new JTextField(oldName);
-        eastPanel.add(name);
-        eastPanel.add(new JLabel("City:"));
+        infoPanel.add(name);
+        infoPanel.add(new JLabel("City:"));
         city = new JTextField(selectedContact.getLocation());
-        eastPanel.add(city);
-        eastPanel.add(new JLabel("Company:"));
+        infoPanel.add(city);
+        infoPanel.add(new JLabel("Company:"));
         company = new JTextField(selectedContact.getCompanyOrSchool());
-        eastPanel.add(company);
-        eastPanel.add(new JLabel("Meeting Location:"));
+        infoPanel.add(company);
+        infoPanel.add(new JLabel("Meeting Location:"));
         meetingLoc = new JTextField(selectedContact.getMeetingLoc());
-        eastPanel.add(meetingLoc);
-        eastPanel.add(new JLabel("Email:"));
+        infoPanel.add(meetingLoc);
+        infoPanel.add(new JLabel("Email:"));
         email = new JTextField(selectedContact.getEmail());
-        eastPanel.add(email);
-        eastPanel.add(new JLabel("Phone:"));
+        infoPanel.add(email);
+        infoPanel.add(new JLabel("Phone:"));
         phone = new JTextField(selectedContact.getOtherContact());
-        eastPanel.add(phone);
-        eastPanel.add(new JLabel("Notes:"));
+        infoPanel.add(phone);
+        infoPanel.add(new JLabel("Notes:"));
         notes = new JTextField(selectedContact.getNotes());
-        eastPanel.add(notes);
-        eastPanel.add(new JLabel("Last Contacted:"));
+        infoPanel.add(notes);
+        infoPanel.add(new JLabel("Last Contacted:"));
         //convert Calendar to String
         SimpleDateFormat formatter=new SimpleDateFormat("MM/dd/yyyy");
         String currentDate = formatter.format(selectedContact.getLastContacted().getTime());
         lastContacted = new JTextField(currentDate);
-        eastPanel.add(lastContacted);
-        add(eastPanel);
+        infoPanel.add(lastContacted);
 
+        infoPanel.add(new JLabel(""));
         submit = new JButton("Submit");
-        eastPanel.add(submit);
+        infoPanel.add(submit);
         submit.addActionListener(this);
 
-        getContentPane().add(eastPanel);
+        add(infoPanel);
+
+        getContentPane().add(infoPanel);
         pack();
         setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
-            cb.editContact(oldName, name.getText(), meetingLoc.getText(), city.getText(), company.getText(), email.getText(), phone.getText(), notes.getText(), lastContacted.getText());
-            mainPanel.searchResultData.removeElement(oldName);
-            mainPanel.searchResultData.addElement(name.getText());
+            String currName = name.getText();
+            String currMeetingLoc = meetingLoc.getText();
+            String currCity = city.getText();
+            String currCompany = company.getText();
+            String currEmail = email.getText();
+            String currPhone = phone.getText();
+            String currNotes = notes.getText();
+            String currLastContacted = lastContacted.getText();
 
-            mainPanel.name.setText(name.getText());
-            mainPanel.city.setText(city.getText());
-            mainPanel.company.setText(company.getText());
-            mainPanel.meetingLoc.setText(meetingLoc.getText());
-            mainPanel.email.setText(email.getText());
-            mainPanel.phone.setText(phone.getText());
-            mainPanel.notes.setText(notes.getText());
+            cb.editContact(oldName, currName, currMeetingLoc, currCity, currCompany, currEmail, currPhone, currNotes, currLastContacted);
+
+            if (!oldName.equals(currName)) {
+                mainPanel.searchResultData.removeElement(oldName);
+                mainPanel.searchResultData.addElement(name.getText());
+            }
+
+            mainPanel.name.setText(currName);
+            mainPanel.city.setText(currCity);
+            mainPanel.company.setText(currCompany);
+            mainPanel.meetingLoc.setText(currMeetingLoc);
+            mainPanel.email.setText(currEmail);
+            mainPanel.phone.setText(currPhone);
+            mainPanel.notes.setText(currNotes);
 
             this.dispose();
         }

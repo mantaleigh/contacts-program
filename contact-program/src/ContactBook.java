@@ -164,15 +164,13 @@ public class ContactBook<T> {
     }
 
     // ********* GET ALL NAMES ***********
-    // Returns an array of Strings that has the first and last name of all Contacts in the hashtable.
-	public String[] getAllNames() {
+    // Returns a LinkedList of Strings that has the first and last name of all Contacts in the hashtable.
+	public LinkedList<Contact> getAllContacts() {
 		//System.out.println(searchTable);
-		String[] names = new String[searchTable.size()]; // provide enough space for all the names
-		Enumeration<String> keys = searchTable.keys();
-		int i = 0;
-		while (keys.hasMoreElements()) { 
-			names[i] = keys.nextElement();
-			i++;
+		LinkedList<Contact> names = new LinkedList<>();
+		Enumeration<Contact> values = searchTable.elements();
+		while (values.hasMoreElements()) {
+			names.add(values.nextElement());
 		}
 		return names;
 	}
