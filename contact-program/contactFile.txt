@@ -1,2 +1,3 @@
-Aline Mitsuzawa#WECode#Wellesley, MA#Wellesley College#1238675309#amitsuza@wellesley.edu###5/16/2027
-Samantha Voigt#Wellesley & Simmons Hackathon#Wellesley, MA#Wellesley College#9515344452#svoigt@wellesley.edu###4/2/2015
+New person####0000000000####5/16/2015
+Aline Mitsuzawa####0000000000####5/16/2015
+Samantha Voigt####0000000000####5/16/2015

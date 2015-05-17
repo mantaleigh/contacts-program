@@ -136,6 +136,7 @@ public class ContactOverview extends JPanel{
             }
             if (e.getSource()==deleteButton) {
                 cb.deleteContactByName(name.getText());
+                
                 searchResultData.removeElement(name.getText());
             }
             if (e.getSource()==findButton) {
