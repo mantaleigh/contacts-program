@@ -105,6 +105,10 @@ public class Contact {
 		companyOrSchool = newCompanyOrSchool;
 	}
 	
+	public void setPhone(String newPhone) { 
+		phone = newPhone;
+	}
+	
 	public void setEmail(String newEmail) { 
 		email = newEmail;
 	}

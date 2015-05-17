@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.*;
+import java.io.*;
 
 public class ContactBookGUI {
 	public ContactBookGUI() {
@@ -21,10 +22,19 @@ public class ContactBookGUI {
 		// set the jframe height and width
 		frame.setPreferredSize(new Dimension(width, height));
 
+		String fileName = "contactFile.txt";
 		// creates an instance of a ContactBook
+<<<<<<< HEAD
+
+		ContactBook<Contact> program = new ContactBook<Contact>();
+		if (new File(fileName).isFile()) program = new ContactBook<Contact>(fileName); // if the file does exist, read in from it
+=======
 		ContactBook<Contact> program = new ContactBook<Contact>("./contact-program/testFile.txt"); // test file is temp
-		// in the future, this should be a conditional that checks if a file of the correct name exists. 
+		//ContactBook<Contact> program = new ContactBook<Contact>("testFile.txt");
+
+		// in the future, this should be a conditional that checks if a file of the correct name exists.
 		// if the file does exist, create a ContactBook out of that file. If the file does not exist, create an empty one.
+>>>>>>> origin/master
 
 		JPanel mainPanel = new JPanel();
 

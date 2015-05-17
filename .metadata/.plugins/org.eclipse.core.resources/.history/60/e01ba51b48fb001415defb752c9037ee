@@ -1,0 +1,136 @@
+/* Samantha Voigt & Aline Mitsuzawa
+ * 
+ * Contact.java
+ * 
+ * Last edited: May 7, 2015
+ * 
+ * Simple class that stores each contact's information. 
+ * Consists basically entirely of getters and setters. Serves as a template for new contact objects. 
+ * 
+ * Can format a Calendar date as all of these:
+ * YEAR + MONTH + DAY_OF_MONTH
+ * YEAR + MONTH + WEEK_OF_MONTH + DAY_OF_WEEK
+ * YEAR + MONTH + DAY_OF_WEEK_IN_MONTH + DAY_OF_WEEK
+ * YEAR + DAY_OF_YEAR
+ * YEAR + DAY_OF_WEEK + WEEK_OF_YEAR
+ * 
+ * can use: void set(int year, int month, int date) to set a Calendar object to a date
+ * 
+ */
+
+
+import java.util.Calendar;
+
+
+public class Contact {
+
+	private String name, meetingLoc, location, companyOrSchool, email, otherContact, notes; 
+	private int phone;
+	private Calendar lastContacted;
+	
+    // -------- CONSTRUCTORS ---------
+	// first constructor that takes every possible instance variable in as a parameter
+	public Contact (String name, String meetingLoc, String location, String companyOrSchool, String email, String otherContact, String notes, Calendar lastContacted) { 
+		this.name = name; 
+		this.meetingLoc = meetingLoc; 
+		this.location = location; 
+		this.companyOrSchool = companyOrSchool; 
+		this.phone = phone;
+		this.email = email; 
+		this.otherContact = otherContact; 
+		this.notes = notes;
+		this.lastContacted = lastContacted;
+	}
+	
+	// second constructor that only takes the name of the contact. The rest of the contact's properties can be set using the provided setters
+	public Contact (String newName) { 
+		name = newName;
+		meetingLoc = location = companyOrSchool = email = otherContact = notes = ""; // set all other instance vars to be empty
+		lastContacted = Calendar.getInstance(); // set the date last contacted to be the day that the contact is made (now)
+	}
+	
+	// ---------- GETTERS -----------
+	public String getName() { 
+		return name;
+	}
+	
+	public String getMeetingLoc() { 
+		return meetingLoc;
+	}
+	
+	public String getLocation() { 
+		return location;
+	}
+	
+	public String getCompanyOrSchool() { 
+		return companyOrSchool;
+	}
+	
+	public String getEmail() { 
+		return email;
+	}
+	
+	public String getOtherContact() { 
+		return otherContact;
+	}
+	
+	public String getNotes() { 
+		return notes;
+	}
+	
+	// can use this to get the calendar object to compare to another using compareTo
+	public Calendar getLastContacted() { 
+		return lastContacted;
+	}
+	
+	// ---------- SETTERS -----------
+	
+	public void setName(String newName) { 
+		name = newName;
+	}
+	
+	public void setMeetingLoc(String newMeetingLoc) { 
+		meetingLoc = newMeetingLoc;
+	}
+	
+	public void setLocation(String newLocation) { 
+		location = newLocation;
+	}
+	
+	public void setCompanyOrSchool(String newCompanyOrSchool) { 
+		companyOrSchool = newCompanyOrSchool;
+	}
+	
+	public void setEmail(String newEmail) { 
+		email = newEmail;
+	}
+	
+	public void setOtherContact(String newOtherContact) { 
+		otherContact = newOtherContact;
+	}
+	
+	public void setNotes(String newNotes) { 
+		notes = newNotes;
+	}
+	
+	public void setLastContacted(Calendar newLastContacted) { 
+		lastContacted = newLastContacted;
+	}
+	
+	public String toString() { 
+		String s = "******* CONTACT *******\nName: " + getName() + "\nMeeting Location: " + getMeetingLoc() 
+				+ "\nLocation: " + getLocation() + "\nCompany or School: " + getCompanyOrSchool() + "\nEmail: " 
+				+ getEmail() + "\nOther Contact Info: " + getOtherContact() + "\nNotes: " + getNotes() + "\nLast Contacted: "
+				+ (lastContacted.get(Calendar.MONTH)+1) + "/" + lastContacted.get(Calendar.DATE) + "/" + lastContacted.get(Calendar.YEAR);	
+		return s;
+		
+	}
+	
+	// testing
+//	public static void main (String[] args) { 
+//		Contact cTest = new Contact("Samantha");
+//		System.out.println(cTest);
+//	}
+	
+	
+}

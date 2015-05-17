@@ -1,0 +1,9 @@
+
+public class ContactBookDriver {
+	public static void main(String[] args) {
+	    //ContactBookGUI test = new ContactBookGUI();
+		ContactBook test = new ContactBook("testFile.txt");
+		test.contactBookSearch("Location", "Wellesley");
+		//System.out.println(test);
+	}
+}

@@ -157,11 +157,13 @@ public class ContactBook<T> {
 	
 	//**************************************************************************************
 	
+	// ******** GET CONTACT BY NAME ***********
     // use this method to get the contact from an entire name -- for displaying information to the right of the table
     public Contact getContactByName(String name) {
         return searchTable.get(name);
     }
 
+    // ********* GET ALL NAMES ***********
     // Returns an array of Strings that has the first and last name of all Contacts in the hashtable.
 	public String[] getAllNames() {
 		String[] names = new String[searchTable.size()]; // provide enough space for all the names
@@ -174,23 +176,78 @@ public class ContactBook<T> {
 		return names;
 	}
 	
+	// ************* ADD CONTACT *************
 	// adds a contact to the contact book
 	public void addContact(Contact person) { 
 		searchTable.put(person.getName(), person);
+		writeSearchTableToFile();
+	}
+	
+	// ********** EDIT CONTACT ***************
+	public void editContact(String oldName, String newName, String meetingLoc, String location, String companyOrSchool, String phone, String email, String otherContact, String notes, String lastContacted) { 
+		if (!oldName.equals(newName)) { // if the user changed the contact's name
+			searchTable.remove(oldName);  // have to delete and re-add to change the key
+			Calendar cal = Calendar.getInstance(); 
+			setCalFromString(lastContacted, cal);
+			Contact newContact = new Contact(newName, meetingLoc, location, companyOrSchool, phone, email, otherContact, notes, cal); 
+			searchTable.put(newName, newContact); // update the hashtable with the new contact -- and new key
+		} else { // if the user did not change the contact's name
+			Contact c = searchTable.get(oldName); 
+			c.setName(newName);
+			c.setMeetingLoc(meetingLoc);
+			c.setLocation(location); 
+			c.setCompanyOrSchool(companyOrSchool);
+			c.setPhone(phone); 
+			c.setEmail(email); 
+			c.setOtherContact(otherContact);
+			c.setNotes(notes); 
+			Calendar cal = Calendar.getInstance();
+			setCalFromString(lastContacted,cal);
+			c.setLastContacted(cal);
+		} 
+
+		writeSearchTableToFile(); // save the changes
+		
+	}
+	
+	// helper function that writes the entire search table to a file called contactFile (either writing for the first time or overwriting)
+	private void writeSearchTableToFile() { 
+		try {
+			PrintWriter writer = new PrintWriter("contactFile.txt");
+			Enumeration<Contact> vals = searchTable.elements();
+			while (vals.hasMoreElements()) { 
+				Contact c = vals.nextElement();
+				Calendar lastContacted = c.getLastContacted();
+				String s = (c.getName() + "#" + c.getMeetingLoc() + "#" + c.getLocation() + 
+						"#" + c.getCompanyOrSchool() + "#" + c.getPhone() + "#" + 
+						c.getEmail() + "#" + c.getOtherContact() + "#" + c.getNotes() + 
+						"#" + lastContacted.get(Calendar.MONTH)+1) + "/" + 
+						lastContacted.get(Calendar.DATE) + "/" + lastContacted.get(Calendar.YEAR);
+				writer.println(s);
+			}
+			writer.close();
+		} catch (IOException ex) { 
+			System.out.println(ex);
+		}
 	}
 	
 	// don't know which one of the next two methods will end up being the most useful... or both?
-	
+
+	// ******* DELETE CONTACT BY NAME ********
 	// deletes a contact by passing in a name
 	public void deleteContactByName(String name) { 
 		searchTable.remove(name);
+		writeSearchTableToFile();
 	}
 	
-	// deletes a contact by passing in an object
-	public void deleteContactByObject(Contact person) { 
-		searchTable.remove(person.getName());
-	}
+//	// ******* DELETE CONTACT BY OBJ *********
+//	// deletes a contact by passing in an object
+//	public void deleteContactByObject(Contact person) { 
+//		searchTable.remove(person.getName());
+//		writeSearchTableToFile();
+//	}
 	
+	// ********** TO STRING ************
 	public String toString() { 
 		return searchTable.toString();
 	}

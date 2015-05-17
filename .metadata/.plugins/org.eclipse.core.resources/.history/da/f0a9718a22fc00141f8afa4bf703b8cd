@@ -1,0 +1,130 @@
+/* Samantha Voigt and Aline Mitsuzawa
+ * 
+ * 
+ */
+
+import java.util.*;
+import java.io.*;
+import java.lang.Integer;
+
+public class ContactBook<T> {
+	
+	private Hashtable<String, Contact> searchTable;
+	
+	//empty constructor used first time using the program
+	public ContactBook() {
+		searchTable = new Hashtable<String, Contact>(); // create a blank hashtable
+	}
+	
+	/* constructor that takes in a file of information
+	 * makes contact objects
+	 * should be called once the program is initialized to read previous user data
+	 */
+	public ContactBook(String srcFile) {
+		searchTable = new Hashtable<String, Contact>();
+		try {
+			Scanner scan = new Scanner(new File(srcFile));
+			while(scan.hasNextLine()) { 
+				String line = scan.nextLine(); // one line represents a single contact
+				String[] fields = line.split("#"); // line is split up by # symbols
+				Calendar dateContacted = Calendar.getInstance(); // sets up a calendar with default date/month/year (today)
+				try {
+					setCalFromString(fields[8], dateContacted); // if there is a date set, update the calendar using the helper method to the given date/month/year of last contact
+				} catch (ArrayIndexOutOfBoundsException ex) { } // don't do anything -- keep the default date/month/year Calendar
+				Contact newPerson = new Contact(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], dateContacted);
+				searchTable.put(newPerson.getName(), newPerson); // add new contact to the hashtable
+			}
+			scan.close();
+		} catch (IOException ex) { 
+			System.out.println(ex);
+		}
+	}
+	
+	// helper method that takes a typical "mm/dd/yyyy" formatted String and saves that information into a given Calendar object
+	private void setCalFromString(String mmddyyyy, Calendar cal) { 
+		String[] dateArray = mmddyyyy.split("/");
+		int month = Integer.parseInt(dateArray[0])-1;
+		int date = Integer.parseInt(dateArray[1]);
+		int year = Integer.parseInt(dateArray[2]);
+		cal.set(year, month, date);
+	}
+	
+	// probably won't be able to use this bc ... problems
+//	public LinkedList<Contact> contactBookSearch(String category, String specificCriteria) {
+//		return null;
+//	}
+//	
+	// returns a linkedList of all contacts that fit the criteria given for searching by name. Not case sensitive.
+	public LinkedList<Contact> searchByName(String criteria) { 
+		LinkedList<Contact> results = new LinkedList<Contact>();
+		Enumeration<Contact> vals = searchTable.elements(); 
+		while (vals.hasMoreElements()) { // loop through each contact
+			Contact elt = vals.nextElement();
+			String name = elt.getName().toLowerCase();
+			if (name.contains(criteria.toLowerCase())) results.add(elt);
+		}
+		return results;
+	}
+	
+	// returns a linkedList of all contacts that fit the criteria given for searching by meeting location. Not case sensitive.
+	public LinkedList<Contact> searchByMeetingLoc(String criteria) { 
+		LinkedList<Contact> results = new LinkedList<Contact>(); 
+		Enumeration<Contact> vals = searchTable.elements();
+		while (vals.hasMoreElements()) { 
+			Contact elt = vals.nextElement(); 
+			String meetingLoc = elt.getMeetingLoc().toLowerCase();
+			if (meetingLoc.contains(criteria.toLowerCase())) results.add(elt);
+		}
+		return results;
+	}
+	
+	// returns a linkedList of all contacts that fit the criteria given for searching by location. Not case sensitive.
+	public LinkedList<Contact> searchByLocation(String criteria) { 
+		LinkedList<Contact> results = new LinkedList<Contact>(); 
+		Enumeration<Contact> vals = searchTable.elements();
+		while (vals.hasMoreElements()) { 
+			Contact elt = vals.nextElement(); 
+			String location = elt.getLocation().toLowerCase();
+			if (location.contains(criteria.toLowerCase())) results.add(elt);
+		}
+		return results;
+	}
+
+    // use this method to get the contact from an entire name -- for displaying information to the right of the table
+    public Contact getContactByName(String name) {
+        return searchTable.get(name);
+    }
+
+    // Returns an array of Strings that has the first and last name of all Contacts in the hashtable.
+	public String[] getAllNames() {
+		String[] names = new String[searchTable.size()]; // provide enough space for all the names
+		Enumeration<String> keys = searchTable.keys();
+		int i = 0;
+		while (keys.hasMoreElements()) { 
+			names[i] = keys.nextElement();
+			i++;
+		}
+		return names;
+	}
+	
+	// adds a contact to the contact book
+	public void addContact(Contact person) { 
+		searchTable.put(person.getName(), person);
+	}
+	
+	// don't know which one of the next two methods will end up being the most useful... or both?
+	
+	// deletes a contact by passing in a name
+	public void deleteContactByName(String name) { 
+		searchTable.remove(name);
+	}
+	
+	// deletes a contact by passing in an object
+	public void deleteContactByObject(Contact person) { 
+		searchTable.remove(person.getName());
+	}
+	
+	public String toString() { 
+		return searchTable.toString();
+	}
+}

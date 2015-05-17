@@ -1,0 +1,43 @@
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
+import javax.swing.*;
+
+public class ContactBookGUI {
+	public ContactBookGUI() {
+		
+		// creates and shows a Frame
+		JFrame frame = new JFrame("Grad School Manager");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// get the screen size as a java dimension
+		// code from http://alvinalexander.com/java/jframe-size-example-screen
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+		// get 2/3 of the height, and 2/3 of the width
+		int height = screenSize.height * 2 / 3;
+		int width = screenSize.width * 2 / 3;
+
+		// set the jframe height and width
+		frame.setPreferredSize(new Dimension(width, height));
+
+		// creates an instance of a ContactBook
+		ContactBook<Contact> program = new ContactBook<Contact>();
+
+		JPanel mainPanel = new JPanel();
+
+		JTabbedPane home = new JTabbedPane();
+		home.addTab("Add", new AddTab(program));
+		home.addTab("Update", new UpdateTab(program));
+		home.addTab("Search", new SearchTab(program));
+		mainPanel.add(home);
+
+		frame.getContentPane().add(mainPanel);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		//ContactBookGUI test = new ContactBookGUI();
+	}
+}
