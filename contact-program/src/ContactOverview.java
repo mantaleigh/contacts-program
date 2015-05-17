@@ -116,9 +116,9 @@ public class ContactOverview extends JPanel{
                 phone.setText(selectedContact.getOtherContact());
                 notes.setText(selectedContact.getNotes());
                 // converts Calendar to String
-                //SimpleDateFormat formatter=new SimpleDateFormat("dd-MMM-yyyy");
-                //String currentDate = formatter.format(selectedContact.getLastContacted());
-                //lastContacted.setText(selectedContact.getLastContacted().toString());
+                SimpleDateFormat formatter=new SimpleDateFormat("MM/dd/yyyy");
+                String currentDate = formatter.format(selectedContact.getLastContacted().getTime());
+                lastContacted.setText(currentDate);
             }
         }
     }
@@ -143,11 +143,7 @@ public class ContactOverview extends JPanel{
             if (e.getSource()==newButton) {
             	Contact stub = new Contact("Stub");
                 cb.addContact(stub); // ????
-                JFrame frame = new JFrame ("Add New Contact");
-                frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-                frame.getContentPane().add (new ContactChanges(cb, stub));
-                frame.pack();
-                frame.setVisible (true);
+                JFrame frame = new ContactChanges(cb, stub);
                 /*
             	JOptionPane pane = new JOptionPane("Make New Contact");
             	String name = JOptionPane.showInputDialog(pane, "Please enter the new contact's name:"); 
@@ -200,11 +196,7 @@ public class ContactOverview extends JPanel{
             if (e.getSource()==editButton) {
                 String selectedContactName = (String) contactSearch.getSelectedItem();
                 Contact selectedContact = cb.getContactByName(selectedContactName);
-                JFrame frame = new JFrame ("Edit Contact");
-                frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-                frame.getContentPane().add(new ContactChanges(cb, selectedContact));
-                frame.pack();
-                frame.setVisible (true);
+                JFrame frame = new ContactChanges(cb, selectedContact);
             }
         }
     }

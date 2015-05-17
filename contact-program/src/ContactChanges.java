@@ -2,11 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by amitsuzawa on 5/17/15.
  */
-public class ContactChanges extends JPanel {
+public class ContactChanges extends JFrame {
 
     private ContactBook<Contact> cb;
     private JTextField name, city, company, meetingLoc, email, phone, notes, lastContacted;
@@ -15,9 +17,11 @@ public class ContactChanges extends JPanel {
     private String oldName;
 
     public ContactChanges(ContactBook<Contact> program, Contact selectedContact) {
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         cb = program;
         eastPanel = new JPanel();
-        eastPanel.setLayout(new GridLayout(8, 2));
+        eastPanel.setLayout(new GridLayout(10, 2));
         eastPanel.add(new JLabel("Contact information"));
         eastPanel.add(new JLabel());
         eastPanel.add(new JLabel("Name:"));
@@ -43,20 +47,28 @@ public class ContactChanges extends JPanel {
         notes = new JTextField(selectedContact.getNotes());
         eastPanel.add(notes);
         eastPanel.add(new JLabel("Last Contacted:"));
-        lastContacted = new JTextField("");
+        //convert Calendar to String
+        SimpleDateFormat formatter=new SimpleDateFormat("MM/dd/yyyy");
+        String currentDate = formatter.format(selectedContact.getLastContacted().getTime());
+        lastContacted = new JTextField(currentDate);
         eastPanel.add(lastContacted);
+        add(eastPanel);
+
         submit = new JButton("Submit");
         eastPanel.add(submit);
-        add(eastPanel);
+
+        getContentPane().add(eastPanel);
+        pack();
+        setVisible(true);
     }
 
     private class ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == submit) {
-                cb.editContact(oldName, name.getText(), meetingLoc.getText(), city.getText() ,company.getText(), email.getText(), phone.getText(),notes.getText(), lastContacted.getText());
+                cb.editContact(oldName, name.getText(), meetingLoc.getText(), city.getText(), company.getText(), email.getText(), phone.getText(),notes.getText(), lastContacted.getText());
+                setVisible(false);
             }
-
         }
     }
 }

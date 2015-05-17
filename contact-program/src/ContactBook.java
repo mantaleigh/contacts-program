@@ -195,7 +195,7 @@ public class ContactBook<T> {
 			searchTable.put(newName, newContact); // update the hashtable with the new contact -- and new key
 		} else { // if the user did not change the contact's name
 			Contact c = searchTable.get(oldName); 
-			c.setName(newName);
+			c.setName(newName); //not necessary!
 			c.setMeetingLoc(meetingLoc);
 			c.setLocation(location); 
 			c.setCompanyOrSchool(companyOrSchool);
