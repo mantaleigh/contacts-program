@@ -136,25 +136,14 @@ public class ContactOverview extends JPanel{
             	
             	JOptionPane pane = new JOptionPane("Make New Contact");
             	String name = JOptionPane.showInputDialog(pane, "Please enter the new contact's name:"); 
-            	
             	String location = JOptionPane.showInputDialog(pane, "Please enter the new contact's location:");
-            	
             	String company = JOptionPane.showInputDialog(pane, "Please enter the new contact's company/school:");
-            	
             	String meetingLoc = JOptionPane.showInputDialog(pane, "Please enter where you met the new contact:");
-            	
             	String email = JOptionPane.showInputDialog(pane, "Please enter the new contact's email:");
-            	
             	String phone = JOptionPane.showInputDialog(pane, "Please enter the new contact's phone:");
-            	
             	String lastContacted = JOptionPane.showInputDialog(pane, "Please enter that date when you last contacted this new contact:");
-            	Calendar cal = Calendar.getInstance(); 
-        		String[] dateArray = lastContacted.split("/");
-        		int month = Integer.parseInt(dateArray[0])-1;
-        		int date = Integer.parseInt(dateArray[1]);
-        		int year = Integer.parseInt(dateArray[2]);
-        		cal.set(year, month, date);
-            	
+            	Calendar cal = Calendar.getInstance();
+            	cb.setCalFromString(lastContacted, cal);
             	String notes = JOptionPane.showInputDialog(pane, "Anything else you'd like to note about this contact?");
             	
             	Contact newContact = new Contact(name, location, company, meetingLoc, email, phone, notes, cal);
@@ -169,8 +158,30 @@ public class ContactOverview extends JPanel{
 
             }
             if (e.getSource()==findButton) {
-
+            	String detail = searchDetail.getText();
+            	String category = searchCriteria.getSelectedItem().toString();
                 searchResultData.removeAllElements();
+                LinkedList<Contact> results = new LinkedList<Contact>();
+                if (category.equals("Name")) { 
+                	results = cb.searchByName(detail);
+                } else if (category.equals("City")) { 
+                	results = cb.searchByLocation(detail);
+                } else if (category.equals("Company/School")) { 
+                	results = cb.searchByCompanyOrSchool(detail);
+                } else if (category.equals("Meeting Location")) { 
+                	results = cb.searchByCompanyOrSchool(detail);
+                } else if (category.equals("Email")) { 
+                	results = cb.searchByEmail(detail);
+                } else if (category.equals("Phone")) { 
+                	results = cb.searchByOtherContact(detail);
+                } else if (category.equals("Notes")) { 
+                	results = cb.searchByCompanyOrSchool(detail);
+                }
+                
+                for (int i = 0; i < results.size(); i++) { 
+                	searchResultData.addElement(results.get(i).getName());
+                }
+                
                 //searchCriteriaData.add
             }
             if (e.getSource()==editButton) { 
