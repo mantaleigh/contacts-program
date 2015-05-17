@@ -15,10 +15,11 @@ public class ContactChanges extends JFrame implements ActionListener{
     private JPanel eastPanel;
     private JButton submit;
     private String oldName;
+    private ContactOverview mainPanel;
 
-    public ContactChanges(ContactBook<Contact> program, Contact selectedContact) {
+    public ContactChanges(ContactOverview main, ContactBook<Contact> program, Contact selectedContact) {
+        mainPanel = main;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
         cb = program;
         //System.out.print(cb);
         eastPanel = new JPanel();
@@ -67,7 +68,17 @@ public class ContactChanges extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
             cb.editContact(oldName, name.getText(), meetingLoc.getText(), city.getText(), company.getText(), email.getText(), phone.getText(), notes.getText(), lastContacted.getText());
-            System.out.print(cb);
+            mainPanel.searchResultData.removeElement(oldName);
+            mainPanel.searchResultData.addElement(name.getText());
+
+            mainPanel.name.setText(name.getText());
+            mainPanel.city.setText(city.getText());
+            mainPanel.company.setText(company.getText());
+            mainPanel.meetingLoc.setText(meetingLoc.getText());
+            mainPanel.email.setText(email.getText());
+            mainPanel.phone.setText(phone.getText());
+            mainPanel.notes.setText(notes.getText());
+
             this.dispose();
         }
     }
