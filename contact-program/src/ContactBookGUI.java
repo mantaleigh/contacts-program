@@ -36,8 +36,4 @@ public class ContactBookGUI {
 		frame.pack();
 		frame.setVisible(true);
 	}
-	
-	public static void main(String[] args) {
-		ContactBookGUI test = new ContactBookGUI();
-	}
 }

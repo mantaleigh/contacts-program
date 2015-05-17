@@ -24,17 +24,17 @@ import java.util.Calendar;
 
 public class Contact {
 
-	private String name, meetingLoc, location, companyOrSchool, phone, email, otherContact, notes; 
+	private String name, meetingLoc, location, companyOrSchool, email, otherContact, notes; 
 	private Calendar lastContacted;
 	
     // -------- CONSTRUCTORS ---------
 	// first constructor that takes every possible instance variable in as a parameter
-	public Contact (String name, String meetingLoc, String location, String companyOrSchool, String phone, String email, String otherContact, String notes, Calendar lastContacted) { 
+	public Contact (String name, String meetingLoc, String location, String companyOrSchool, String email, String otherContact, String notes, Calendar lastContacted) { 
 		this.name = name; 
 		this.meetingLoc = meetingLoc; 
 		this.location = location; 
 		this.companyOrSchool = companyOrSchool; 
-		this.phone = phone;
+		//this.phone = phone;
 		this.email = email; 
 		this.otherContact = otherContact; 
 		this.notes = notes;
@@ -46,7 +46,7 @@ public class Contact {
 		name = newName;
 		meetingLoc = location = companyOrSchool = email = otherContact = notes = ""; // set all other instance vars to be empty
 		lastContacted = Calendar.getInstance(); // set the date last contacted to be the day that the contact is made (now)
-		phone = "0000000000"; // default phone number is 000-000-0000
+		//phone = "0000000000"; // default phone number is 000-000-0000
 	}
 	
 	// ---------- GETTERS -----------
@@ -66,9 +66,9 @@ public class Contact {
 		return companyOrSchool;
 	}
 	
-	public String getPhone() { 
-		return phone;
-	}
+//	public String getPhone() { 
+//		return phone;
+//	}
 	
 	public String getEmail() { 
 		return email;
@@ -105,9 +105,9 @@ public class Contact {
 		companyOrSchool = newCompanyOrSchool;
 	}
 	
-	public void setPhone(String newPhone) { 
-		phone = newPhone;
-	}
+//	public void setPhone(String newPhone) { 
+//		phone = newPhone;
+//	}
 	
 	public void setEmail(String newEmail) { 
 		email = newEmail;

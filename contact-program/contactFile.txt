@@ -1,3 +1,3 @@
-New person####0000000000####5/16/2015
-Aline Mitsuzawa####0000000000####5/16/2015
-Samantha Voigt####0000000000####5/16/2015
+Aline Mitsuzawa#WEcode######5/17/2015
+Sally Samuels#Los Angeles#Intuit#San Francisco#ssamuels@gmail.com##n/a#9/10/14
+Samantha Voigt#Wellesley & Simmons Hackathon######5/17/2015

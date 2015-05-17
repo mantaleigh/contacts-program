@@ -31,7 +31,7 @@ public class ContactBook<T> {
 				try {
 					setCalFromString(fields[8], dateContacted); // if there is a date set, update the calendar using the helper method to the given date/month/year of last contact
 				} catch (ArrayIndexOutOfBoundsException ex) { } // don't do anything -- keep the default date/month/year Calendar
-				Contact newPerson = new Contact(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], dateContacted);
+				Contact newPerson = new Contact(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], dateContacted);
 				searchTable.put(newPerson.getName(), newPerson); // add new contact to the hashtable
 			}
 			scan.close();
@@ -41,7 +41,7 @@ public class ContactBook<T> {
 	}
 	
 	// helper method that takes a typical "mm/dd/yyyy" formatted String and saves that information into a given Calendar object
-	private void setCalFromString(String mmddyyyy, Calendar cal) { 
+	public void setCalFromString(String mmddyyyy, Calendar cal) { 
 		String[] dateArray = mmddyyyy.split("/");
 		int month = Integer.parseInt(dateArray[0])-1;
 		int date = Integer.parseInt(dateArray[1]);
@@ -108,16 +108,16 @@ public class ContactBook<T> {
 	}
 	
 	// returns a linkedList of all contacts that fit the criteria given for searching by phone. Not case sensitive.
-	public LinkedList<Contact> searchByPhone(String criteria) { 
-		LinkedList<Contact> results = new LinkedList<Contact>(); 
-		Enumeration<Contact> vals = searchTable.elements();
-		while (vals.hasMoreElements()) { 
-			Contact elt = vals.nextElement(); 
-			String phone = elt.getPhone().toLowerCase().replace(" ", "").replace("-", "");
-			if (phone.contains(criteria.toLowerCase().replace(" ", "").replace("-", ""))) results.add(elt);
-		}
-		return results;
-	}
+//	public LinkedList<Contact> searchByPhone(String criteria) { 
+//		LinkedList<Contact> results = new LinkedList<Contact>(); 
+//		Enumeration<Contact> vals = searchTable.elements();
+//		while (vals.hasMoreElements()) { 
+//			Contact elt = vals.nextElement(); 
+//			String phone = elt.getPhone().toLowerCase().replace(" ", "").replace("-", "");
+//			if (phone.contains(criteria.toLowerCase().replace(" ", "").replace("-", ""))) results.add(elt);
+//		}
+//		return results;
+//	}
 	
 	// returns a linkedList of all contacts that fit the criteria given for searching by email. Not case sensitive.
 	public LinkedList<Contact> searchByEmail(String criteria) { 
@@ -190,7 +190,7 @@ public class ContactBook<T> {
 			searchTable.remove(oldName);  // have to delete and re-add to change the key
 			Calendar cal = Calendar.getInstance(); 
 			setCalFromString(lastContacted, cal);
-			Contact newContact = new Contact(newName, meetingLoc, location, companyOrSchool, phone, email, otherContact, notes, cal); 
+			Contact newContact = new Contact(newName, meetingLoc, location, companyOrSchool, email, otherContact, notes, cal); 
 			searchTable.put(newName, newContact); // update the hashtable with the new contact -- and new key
 		} else { // if the user did not change the contact's name
 			Contact c = searchTable.get(oldName); 
@@ -198,7 +198,7 @@ public class ContactBook<T> {
 			c.setMeetingLoc(meetingLoc);
 			c.setLocation(location); 
 			c.setCompanyOrSchool(companyOrSchool);
-			c.setPhone(phone); 
+			//c.setPhone(phone); 
 			c.setEmail(email); 
 			c.setOtherContact(otherContact);
 			c.setNotes(notes); 
@@ -218,9 +218,8 @@ public class ContactBook<T> {
 				Contact c = vals.nextElement();
 				Calendar lastContacted = c.getLastContacted();
 				String s = (c.getName() + "#" + c.getMeetingLoc() + "#" + c.getLocation() + 
-						"#" + c.getCompanyOrSchool() + "#" + c.getPhone() + "#" + 
-						c.getEmail() + "#" + c.getOtherContact() + "#" + c.getNotes() + 
-						"#" + (lastContacted.get(Calendar.MONTH)+1) + "/" + 
+						"#" + c.getCompanyOrSchool() + "#" + c.getEmail() + "#" + c.getOtherContact() + 
+						"#" + c.getNotes() + "#" + (lastContacted.get(Calendar.MONTH)+1) + "/" + 
 						lastContacted.get(Calendar.DATE) + "/" + lastContacted.get(Calendar.YEAR));
 				writer.println(s);
 			}

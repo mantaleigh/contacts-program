@@ -21,7 +21,7 @@ public class ContactOverview extends JPanel{
     private JButton findButton;
     private JComboBox<String> contactSearch;
     private JPanel northPanel, westPanel, eastPanel, southPanel;
-    private JLabel name, city, company, meetingLoc, email, phone, notes;
+    private JLabel name, city, company, meetingLoc, email, phone, otherContact, notes;
     private JTextField searchDetail;
     private JButton newButton, editButton, deleteButton, updateButton;
 
@@ -72,6 +72,9 @@ public class ContactOverview extends JPanel{
         eastPanel.add(new JLabel("Phone:"));
         phone = new JLabel("");
         eastPanel.add(phone);
+        //eastPanel.add(new JLabel("Other Contact:"));
+        //otherContact = new JLabel("");
+        //eastPanel.add(otherContact);
         eastPanel.add(new JLabel("Notes:"));
         notes = new JLabel("");
         eastPanel.add(notes);
@@ -86,8 +89,10 @@ public class ContactOverview extends JPanel{
         newButton.addActionListener(new ButtonListener());
         editButton = new JButton("Edit");
         southPanel.add(editButton);
+        editButton.addActionListener(new ButtonListener());
         deleteButton = new JButton("Delete");
         southPanel.add(deleteButton);
+        deleteButton.addActionListener(new ButtonListener());
         add(southPanel);
 
         //getSelectedRow()
@@ -104,6 +109,7 @@ public class ContactOverview extends JPanel{
                 meetingLoc.setText(selectedContact.getMeetingLoc());
                 email.setText(selectedContact.getEmail());
                 phone.setText(selectedContact.getOtherContact());
+                //otherContact.setText(selectedContact.getOtherContact());
                 notes.setText(selectedContact.getNotes());
             }
         }
@@ -127,9 +133,33 @@ public class ContactOverview extends JPanel{
                 */
             }
             if (e.getSource()==newButton) {
-                Contact newContact = new Contact("New Contact");
+            	
+            	JOptionPane pane = new JOptionPane("Make New Contact");
+            	String name = JOptionPane.showInputDialog(pane, "Please enter the new contact's name:"); 
+            	
+            	String location = JOptionPane.showInputDialog(pane, "Please enter the new contact's location:");
+            	
+            	String company = JOptionPane.showInputDialog(pane, "Please enter the new contact's company/school:");
+            	
+            	String meetingLoc = JOptionPane.showInputDialog(pane, "Please enter where you met the new contact:");
+            	
+            	String email = JOptionPane.showInputDialog(pane, "Please enter the new contact's email:");
+            	
+            	String phone = JOptionPane.showInputDialog(pane, "Please enter the new contact's phone:");
+            	
+            	String lastContacted = JOptionPane.showInputDialog(pane, "Please enter that date when you last contacted this new contact:");
+            	Calendar cal = Calendar.getInstance(); 
+        		String[] dateArray = lastContacted.split("/");
+        		int month = Integer.parseInt(dateArray[0])-1;
+        		int date = Integer.parseInt(dateArray[1]);
+        		int year = Integer.parseInt(dateArray[2]);
+        		cal.set(year, month, date);
+            	
+            	String notes = JOptionPane.showInputDialog(pane, "Anything else you'd like to note about this contact?");
+            	
+            	Contact newContact = new Contact(name, location, company, meetingLoc, email, phone, notes, cal);
                 cb.addContact(newContact);
-                searchResultData.addElement(name.getText());
+                searchResultData.addElement(name);
 
             }
             if (e.getSource()==deleteButton) {
@@ -143,7 +173,12 @@ public class ContactOverview extends JPanel{
                 searchResultData.removeAllElements();
                 //searchCriteriaData.add
             }
-            //if (e.getSource())
+            if (e.getSource()==editButton) { 
+
+//            	JOptionPane pane = new JOptionPane("Edit Contact");
+//            	String name = JOptionPane.showInputDialog(pane, "Please enter the new contact's name");
+//            	System.out.println("The user entered " + name);
+            }
         }
     }
 }
