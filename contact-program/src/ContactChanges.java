@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * Created by amitsuzawa on 5/17/15.
  */
-public class ContactChanges extends JFrame {
+public class ContactChanges extends JFrame implements ActionListener{
 
     private ContactBook<Contact> cb;
     private JTextField name, city, company, meetingLoc, email, phone, notes, lastContacted;
@@ -17,9 +17,10 @@ public class ContactChanges extends JFrame {
     private String oldName;
 
     public ContactChanges(ContactBook<Contact> program, Contact selectedContact) {
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         cb = program;
+        //System.out.print(cb);
         eastPanel = new JPanel();
         eastPanel.setLayout(new GridLayout(10, 2));
         eastPanel.add(new JLabel("Contact information"));
@@ -56,19 +57,18 @@ public class ContactChanges extends JFrame {
 
         submit = new JButton("Submit");
         eastPanel.add(submit);
+        submit.addActionListener(this);
 
         getContentPane().add(eastPanel);
         pack();
         setVisible(true);
     }
 
-    private class ButtonListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == submit) {
-                cb.editContact(oldName, name.getText(), meetingLoc.getText(), city.getText(), company.getText(), email.getText(), phone.getText(),notes.getText(), lastContacted.getText());
-                setVisible(false);
-            }
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == submit) {
+            cb.editContact(oldName, name.getText(), meetingLoc.getText(), city.getText(), company.getText(), email.getText(), phone.getText(), notes.getText(), lastContacted.getText());
+            System.out.print(cb);
+            this.dispose();
         }
     }
 }

@@ -25,11 +25,11 @@ public class ContactOverview extends JPanel{
     private JLabel name, city, company, meetingLoc, email, phone, notes, lastContacted;
     private JTextField searchDetail;
     private JButton newButton, editButton, deleteButton, updateButton;
+    private JFrame popup; //????
 
     public ContactOverview(ContactBook program){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         cb = program;
-
         northPanel = new JPanel();
         searchBy = new JLabel("Search by");
         northPanel.add(searchBy);
@@ -47,10 +47,6 @@ public class ContactOverview extends JPanel{
         westPanel.add(searchResult);
         searchResultData = new DefaultComboBoxModel<>(cb.getAllNames());
         contactSearch = new JComboBox<>(searchResultData);
-        String[] sup = cb.getAllNames();
-        for (int i = 0; i < sup.length; i++) {
-            System.out.println(sup[i]);
-        }
         contactSearch.addItemListener(new ComboBoxListener());
         westPanel.add(contactSearch);
         add(westPanel);
@@ -143,30 +139,11 @@ public class ContactOverview extends JPanel{
             if (e.getSource()==newButton) {
             	Contact stub = new Contact("Stub");
                 cb.addContact(stub); // ????
-                JFrame frame = new ContactChanges(cb, stub);
-                /*
-            	JOptionPane pane = new JOptionPane("Make New Contact");
-            	String name = JOptionPane.showInputDialog(pane, "Please enter the new contact's name:"); 
-            	String location = JOptionPane.showInputDialog(pane, "Please enter the new contact's location:");
-            	String company = JOptionPane.showInputDialog(pane, "Please enter the new contact's company/school:");
-            	String meetingLoc = JOptionPane.showInputDialog(pane, "Please enter where you met the new contact:");
-            	String email = JOptionPane.showInputDialog(pane, "Please enter the new contact's email:");
-            	String phone = JOptionPane.showInputDialog(pane, "Please enter the new contact's phone:");
-            	String lastContacted = JOptionPane.showInputDialog(pane, "Please enter that date when you last contacted this new contact:");
-            	Calendar cal = Calendar.getInstance();
-            	cb.setCalFromString(lastContacted, cal);
-            	String notes = JOptionPane.showInputDialog(pane, "Anything else you'd like to note about this contact?");
-            	
-            	Contact newContact = new Contact(name, location, company, meetingLoc, email, phone, notes, cal);
-                cb.addContact(newContact);
-                searchResultData.addElement(name);
-                */
-
+                popup = new ContactChanges(cb, stub);
             }
             if (e.getSource()==deleteButton) {
                 cb.deleteContactByName(name.getText());
                 searchResultData.removeElement(name.getText());
-
             }
             if (e.getSource()==findButton) {
             	String detail = searchDetail.getText();
@@ -196,7 +173,7 @@ public class ContactOverview extends JPanel{
             if (e.getSource()==editButton) {
                 String selectedContactName = (String) contactSearch.getSelectedItem();
                 Contact selectedContact = cb.getContactByName(selectedContactName);
-                JFrame frame = new ContactChanges(cb, selectedContact);
+                popup = new ContactChanges(cb, selectedContact);
             }
         }
     }

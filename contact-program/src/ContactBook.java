@@ -166,7 +166,7 @@ public class ContactBook<T> {
     // ********* GET ALL NAMES ***********
     // Returns an array of Strings that has the first and last name of all Contacts in the hashtable.
 	public String[] getAllNames() {
-		System.out.println(searchTable);
+		//System.out.println(searchTable);
 		String[] names = new String[searchTable.size()]; // provide enough space for all the names
 		Enumeration<String> keys = searchTable.keys();
 		int i = 0;
