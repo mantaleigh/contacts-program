@@ -156,7 +156,7 @@ public class ContactOverview extends JPanel{
                 } else if (category.equals("Company/School")) { 
                 	results = cb.searchByCompanyOrSchool(detail);
                 } else if (category.equals("Meeting Location")) { 
-                	results = cb.searchByCompanyOrSchool(detail);
+                	results = cb.searchByMeetingLoc(detail);
                 } else if (category.equals("Email")) { 
                 	results = cb.searchByEmail(detail);
                 } else if (category.equals("Phone")) { 
