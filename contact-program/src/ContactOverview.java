@@ -7,6 +7,7 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.text.*;
 
 /**
  * Created by amitsuzawa on 5/14/15.
@@ -21,7 +22,7 @@ public class ContactOverview extends JPanel{
     private JButton findButton;
     private JComboBox<String> contactSearch;
     private JPanel northPanel, westPanel, eastPanel, southPanel;
-    private JLabel name, city, company, meetingLoc, email, phone, otherContact, notes;
+    private JLabel name, city, company, meetingLoc, email, phone, notes, lastContacted;
     private JTextField searchDetail;
     private JButton newButton, editButton, deleteButton, updateButton;
 
@@ -44,14 +45,18 @@ public class ContactOverview extends JPanel{
         westPanel = new JPanel();
         searchResult = new JLabel("Search results");
         westPanel.add(searchResult);
-        searchResultData = new DefaultComboBoxModel<String>(cb.getAllNames());
+        searchResultData = new DefaultComboBoxModel<>(cb.getAllNames());
         contactSearch = new JComboBox<>(searchResultData);
+        String[] sup = cb.getAllNames();
+        for (int i = 0; i < sup.length; i++) {
+            System.out.println(sup[i]);
+        }
         contactSearch.addItemListener(new ComboBoxListener());
         westPanel.add(contactSearch);
         add(westPanel);
 
         eastPanel = new JPanel();
-        eastPanel.setLayout(new GridLayout(8,2));
+        eastPanel.setLayout(new GridLayout(9,2));
         eastPanel.add(new JLabel("Contact information"));
         eastPanel.add(new JLabel());
         eastPanel.add(new JLabel("Name:"));
@@ -72,12 +77,12 @@ public class ContactOverview extends JPanel{
         eastPanel.add(new JLabel("Phone:"));
         phone = new JLabel("");
         eastPanel.add(phone);
-        //eastPanel.add(new JLabel("Other Contact:"));
-        //otherContact = new JLabel("");
-        //eastPanel.add(otherContact);
         eastPanel.add(new JLabel("Notes:"));
         notes = new JLabel("");
         eastPanel.add(notes);
+        eastPanel.add(new JLabel("Last Contacted:"));
+        lastContacted = new JLabel("");
+        eastPanel.add(lastContacted);
         add(eastPanel);
         
         southPanel = new JPanel();
@@ -94,14 +99,14 @@ public class ContactOverview extends JPanel{
         southPanel.add(deleteButton);
         deleteButton.addActionListener(new ButtonListener());
         add(southPanel);
-
-        //getSelectedRow()
     }
     private class ComboBoxListener implements ItemListener {
+        private String selectedContactName;
+
         @Override
         public void itemStateChanged(ItemEvent e) {
             if (e.getStateChange() == ItemEvent.SELECTED) {
-                String selectedContactName = (String) e.getItem();
+                selectedContactName = (String) e.getItem();
                 Contact selectedContact = cb.getContactByName(selectedContactName);
                 name.setText(selectedContact.getName());
                 city.setText(selectedContact.getLocation());
@@ -109,8 +114,11 @@ public class ContactOverview extends JPanel{
                 meetingLoc.setText(selectedContact.getMeetingLoc());
                 email.setText(selectedContact.getEmail());
                 phone.setText(selectedContact.getOtherContact());
-                //otherContact.setText(selectedContact.getOtherContact());
                 notes.setText(selectedContact.getNotes());
+                // converts Calendar to String
+                //SimpleDateFormat formatter=new SimpleDateFormat("dd-MMM-yyyy");
+                //String currentDate = formatter.format(selectedContact.getLastContacted());
+                //lastContacted.setText(selectedContact.getLastContacted().toString());
             }
         }
     }
@@ -133,7 +141,14 @@ public class ContactOverview extends JPanel{
                 */
             }
             if (e.getSource()==newButton) {
-            	
+            	Contact stub = new Contact("Stub");
+                cb.addContact(stub); // ????
+                JFrame frame = new JFrame ("Add New Contact");
+                frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+                frame.getContentPane().add (new ContactChanges(cb, stub));
+                frame.pack();
+                frame.setVisible (true);
+                /*
             	JOptionPane pane = new JOptionPane("Make New Contact");
             	String name = JOptionPane.showInputDialog(pane, "Please enter the new contact's name:"); 
             	String location = JOptionPane.showInputDialog(pane, "Please enter the new contact's location:");
@@ -149,11 +164,11 @@ public class ContactOverview extends JPanel{
             	Contact newContact = new Contact(name, location, company, meetingLoc, email, phone, notes, cal);
                 cb.addContact(newContact);
                 searchResultData.addElement(name);
+                */
 
             }
             if (e.getSource()==deleteButton) {
                 cb.deleteContactByName(name.getText());
-                
                 searchResultData.removeElement(name.getText());
 
             }
@@ -181,14 +196,15 @@ public class ContactOverview extends JPanel{
                 for (int i = 0; i < results.size(); i++) { 
                 	searchResultData.addElement(results.get(i).getName());
                 }
-                
-                //searchCriteriaData.add
             }
-            if (e.getSource()==editButton) { 
-
-//            	JOptionPane pane = new JOptionPane("Edit Contact");
-//            	String name = JOptionPane.showInputDialog(pane, "Please enter the new contact's name");
-//            	System.out.println("The user entered " + name);
+            if (e.getSource()==editButton) {
+                String selectedContactName = (String) contactSearch.getSelectedItem();
+                Contact selectedContact = cb.getContactByName(selectedContactName);
+                JFrame frame = new JFrame ("Edit Contact");
+                frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+                frame.getContentPane().add(new ContactChanges(cb, selectedContact));
+                frame.pack();
+                frame.setVisible (true);
             }
         }
     }

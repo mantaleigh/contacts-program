@@ -166,6 +166,7 @@ public class ContactBook<T> {
     // ********* GET ALL NAMES ***********
     // Returns an array of Strings that has the first and last name of all Contacts in the hashtable.
 	public String[] getAllNames() {
+		System.out.println(searchTable);
 		String[] names = new String[searchTable.size()]; // provide enough space for all the names
 		Enumeration<String> keys = searchTable.keys();
 		int i = 0;
@@ -185,7 +186,7 @@ public class ContactBook<T> {
 	}
 	
 	// ********** EDIT CONTACT ***************
-	public void editContact(String oldName, String newName, String meetingLoc, String location, String companyOrSchool, String phone, String email, String otherContact, String notes, String lastContacted) { 
+	public void editContact(String oldName, String newName, String meetingLoc, String location, String companyOrSchool, String email, String otherContact, String notes, String lastContacted) {
 		if (!oldName.equals(newName)) { // if the user changed the contact's name
 			searchTable.remove(oldName);  // have to delete and re-add to change the key
 			Calendar cal = Calendar.getInstance(); 
@@ -237,6 +238,8 @@ public class ContactBook<T> {
 		searchTable.remove(name);
 		writeSearchTableToFile();
 	}
+
+	public void clearAllContacts() {searchTable.clear();}
 	
 //	// ******* DELETE CONTACT BY OBJ *********
 //	// deletes a contact by passing in an object

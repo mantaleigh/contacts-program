@@ -1,10 +1,14 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.*;
 
 import javax.swing.*;
 import java.io.*;
 
 public class ContactBookGUI {
+
+	private ContactBook<Contact> program;
+
 	public ContactBookGUI() {
 		
 		// creates and shows a Frame
@@ -25,7 +29,7 @@ public class ContactBookGUI {
 		String fileName = "contactFile.txt";
 		// creates an instance of a ContactBook
 
-		ContactBook<Contact> program = new ContactBook<Contact>();
+		program = new ContactBook<Contact>();
 		if (new File(fileName).isFile()) program = new ContactBook<Contact>(fileName); // if the file does exist, read in from it
 
 		JPanel mainPanel = new JPanel();
