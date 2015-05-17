@@ -206,7 +206,9 @@ public class ContactBook<T> {
 			setCalFromString(lastContacted,cal);
 			c.setLastContacted(cal);
 		} 
+
 		writeSearchTableToFile(); // save the changes
+		
 	}
 	
 	// helper function that writes the entire search table to a file called contactFile (either writing for the first time or overwriting)
@@ -220,8 +222,8 @@ public class ContactBook<T> {
 				String s = (c.getName() + "#" + c.getMeetingLoc() + "#" + c.getLocation() + 
 						"#" + c.getCompanyOrSchool() + "#" + c.getPhone() + "#" + 
 						c.getEmail() + "#" + c.getOtherContact() + "#" + c.getNotes() + 
-						"#" + (lastContacted.get(Calendar.MONTH)+1) + "/" + 
-						lastContacted.get(Calendar.DATE) + "/" + lastContacted.get(Calendar.YEAR));
+						"#" + lastContacted.get(Calendar.MONTH)+1) + "/" + 
+						lastContacted.get(Calendar.DATE) + "/" + lastContacted.get(Calendar.YEAR);
 				writer.println(s);
 			}
 			writer.close();
