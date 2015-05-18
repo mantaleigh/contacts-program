@@ -42,7 +42,7 @@ public class ContactOverview extends JPanel{
         northPanel = new JPanel();
         searchBy = new JLabel("Search by");
         northPanel.add(searchBy);
-        searchCriteria = new JComboBox<>(searchCriteriaData);
+        searchCriteria = new JComboBox<String>(searchCriteriaData);
         northPanel.add(searchCriteria);
         searchDetail = new JTextField("Search Details", 12);
         northPanel.add(searchDetail);
@@ -54,8 +54,8 @@ public class ContactOverview extends JPanel{
         resultPanel = new JPanel();
         searchResult = new JLabel("Search results");
         resultPanel.add(searchResult);
-        searchResultData = new DefaultComboBoxModel<>();
-        contactSearch = new JComboBox<>(searchResultData);
+        searchResultData = new DefaultComboBoxModel<String>();
+        contactSearch = new JComboBox<String>(searchResultData);
         contactSearch.setSelectedItem(null);
         contactSearch.addItemListener(new ComboBoxListener());
         resultPanel.add(contactSearch);
