@@ -154,12 +154,16 @@ public class ContactOverview extends JPanel{
             /**
              * When source in the New button, creates a new stub Contact, adds it to the ContactBook and Contacts ComboBox.
              * Calls new popup window so that user can provide details (stub is eventually replaced).
+             * Once user finishes providing info, Resets to default setting of All Contacts.
              */
             if (e.getSource()==newButton) {
             	Contact stub = new Contact("New Contact");
                 cb.addContact(stub);
                 JFrame popup = new ContactChanges(mainPanel, cb, stub);
                 searchResultData.addElement(stub.getName());
+                searchCriteria.setSelectedItem("All Contacts");
+                searchDetail.setText("Search Details");
+
             }
             /**
              * When source is the Delete button, takes selected Contact's name and deletes it from the ContactBook.

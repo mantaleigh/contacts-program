@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 
 /**
  * Created by amitsuzawa on 5/17/15.
@@ -95,10 +96,18 @@ public class ContactChanges extends JFrame implements ActionListener{
 
             cb.editContact(oldName, currName, currMeetingLoc, currCity, currCompany, currEmail, currPhone, currNotes, currLastContacted);
 
+            //if this is a new Contact (New Contact->Actual Name) or changing the name, must update comboBox to show all Contacts
             if (!oldName.equals(currName)) {
-                mainPanel.searchResultData.removeElement(oldName);
-                mainPanel.searchResultData.addElement(name.getText());
+                mainPanel.searchResultData.removeAllElements();
+                LinkedList<Contact> results = cb.getAllContacts();
+                for (int i = 0; i < results.size(); i++) {
+                    mainPanel.searchResultData.addElement(results.get(i).getName());
+                }
             }
+            //no need to update list if it was just regular edit of previous contact
+
+            //display data of the Contact that was just created/modified
+            mainPanel.searchResultData.setSelectedItem(currName);
 
             mainPanel.name.setText(currName);
             mainPanel.city.setText(currCity);
