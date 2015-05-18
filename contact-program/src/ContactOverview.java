@@ -11,11 +11,11 @@ public class ContactOverview extends JPanel{
 
     private ContactBook<Contact> cb;
     private JLabel searchBy, searchResult;
-    private JComboBox<String> searchCriteria;
-    protected DefaultComboBoxModel<String> searchResultData;
+    private JComboBox searchCriteria;
+    protected DefaultComboBoxModel searchResultData;
     private String[] searchCriteriaData = {"All Contacts", "Name", "City", "Company/School", "Meeting Location", "Email", "Phone", "Notes"};
     private JButton findButton;
-    private JComboBox<String> contactSearch;
+    private JComboBox contactSearch;
     private JPanel northPanel, resultPanel, infoPanel, southPanel;
     protected JLabel name, city, company, meetingLoc, email, phone, notes, lastContacted;
     private JTextField searchDetail;
@@ -29,7 +29,7 @@ public class ContactOverview extends JPanel{
         northPanel = new JPanel();
         searchBy = new JLabel("Search by");
         northPanel.add(searchBy);
-        searchCriteria = new JComboBox<>(searchCriteriaData);
+        searchCriteria = new JComboBox(searchCriteriaData);
         northPanel.add(searchCriteria);
         searchDetail = new JTextField("Search Details", 12);
         northPanel.add(searchDetail);
@@ -41,8 +41,8 @@ public class ContactOverview extends JPanel{
         resultPanel = new JPanel();
         searchResult = new JLabel("Search results");
         resultPanel.add(searchResult);
-        searchResultData = new DefaultComboBoxModel<>();
-        contactSearch = new JComboBox<>(searchResultData);
+        searchResultData = new DefaultComboBoxModel();
+        contactSearch = new JComboBox(searchResultData);
         contactSearch.setSelectedItem(null);
         contactSearch.addItemListener(new ComboBoxListener());
         resultPanel.add(contactSearch);
@@ -121,7 +121,7 @@ public class ContactOverview extends JPanel{
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource()==newButton) {
-            	Contact stub = new Contact("New Contact");
+             Contact stub = new Contact("New Contact");
                 cb.addContact(stub);
                 JFrame popup = new ContactChanges(mainPanel, cb, stub);
                 searchResultData.addElement(stub.getName());
@@ -141,26 +141,26 @@ public class ContactOverview extends JPanel{
                 lastContacted.setText("");
             }
             if (e.getSource()==findButton) {
-            	String detail = searchDetail.getText();
-            	String category = searchCriteria.getSelectedItem().toString();
+             String detail = searchDetail.getText();
+             String category = searchCriteria.getSelectedItem().toString();
                 searchResultData.removeAllElements();
                 LinkedList<Contact> results = new LinkedList<Contact>();
                 if (category.equals("All Contacts")) {
                     results = cb.getAllContacts();
                 } else if (category.equals("Name")) {
-                	results = cb.searchByName(detail);
+                 results = cb.searchByName(detail);
                 } else if (category.equals("City")) { 
-                	results = cb.searchByLocation(detail);
+                 results = cb.searchByLocation(detail);
                 } else if (category.equals("Company/School")) { 
-                	results = cb.searchByCompanyOrSchool(detail);
+                 results = cb.searchByCompanyOrSchool(detail);
                 } else if (category.equals("Meeting Location")) { 
-                	results = cb.searchByMeetingLoc(detail);
+                 results = cb.searchByMeetingLoc(detail);
                 } else if (category.equals("Email")) { 
-                	results = cb.searchByEmail(detail);
+                 results = cb.searchByEmail(detail);
                 } else if (category.equals("Phone")) { 
-                	results = cb.searchByOtherContact(detail);
+                 results = cb.searchByOtherContact(detail);
                 } else if (category.equals("Notes")) { 
-                	results = cb.searchByNotes(detail);
+                 results = cb.searchByNotes(detail);
                 }
 
                 if(results.isEmpty()) {
