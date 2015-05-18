@@ -6,30 +6,43 @@ import java.text.*;
 
 /**
  * Created by amitsuzawa on 5/14/15.
+ * ContactOverview.java populates the main GUI frame with the overall functionality of the program.
  */
 public class ContactOverview extends JPanel{
-
+    /**
+     * Keeps an instance of the ContactBook generated earlier and passed as a parameter
+     */
     private ContactBook<Contact> cb;
     private JLabel searchBy, searchResult;
-    private JComboBox searchCriteria;
-    protected DefaultComboBoxModel searchResultData;
+    private JComboBox<String> searchCriteria, contactSearch;
+    protected DefaultComboBoxModel<String> searchResultData;
     private String[] searchCriteriaData = {"All Contacts", "Name", "City", "Company/School", "Meeting Location", "Email", "Phone", "Notes"};
-    private JButton findButton;
-    private JComboBox contactSearch;
+    private JButton findButton, newButton, editButton, deleteButton;
     private JPanel northPanel, resultPanel, infoPanel, southPanel;
     protected JLabel name, city, company, meetingLoc, email, phone, notes, lastContacted;
     private JTextField searchDetail;
-    private JButton newButton, editButton, deleteButton;
+    /**
+     * Keeps an instance of itself to be passed to popup JFrame
+     * @see #ContactOverview(ContactBook)
+     */
     private ContactOverview mainPanel;
 
+    /**
+     * Constructor. Creates ContactOverview JPanel, which is used to populate the main JFrame.
+     * Overall layout is vertical. Subpanels with the default flow layout keep relevant GUI elements on the same line.
+     * @param program - references ContactBook created in the ContactBookGUI when the program was initialized
+     *                 It is passed to this JPanel because we need to reference it to effect changes.
+     * @return JPanel connecting basic functionality to all the visual elements.
+     */
     public ContactOverview(ContactBook program){
+
         mainPanel = this;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         cb = program;
         northPanel = new JPanel();
         searchBy = new JLabel("Search by");
         northPanel.add(searchBy);
-        searchCriteria = new JComboBox(searchCriteriaData);
+        searchCriteria = new JComboBox<>(searchCriteriaData);
         northPanel.add(searchCriteria);
         searchDetail = new JTextField("Search Details", 12);
         northPanel.add(searchDetail);
@@ -41,8 +54,8 @@ public class ContactOverview extends JPanel{
         resultPanel = new JPanel();
         searchResult = new JLabel("Search results");
         resultPanel.add(searchResult);
-        searchResultData = new DefaultComboBoxModel();
-        contactSearch = new JComboBox(searchResultData);
+        searchResultData = new DefaultComboBoxModel<>();
+        contactSearch = new JComboBox<>(searchResultData);
         contactSearch.setSelectedItem(null);
         contactSearch.addItemListener(new ComboBoxListener());
         resultPanel.add(contactSearch);
@@ -94,9 +107,21 @@ public class ContactOverview extends JPanel{
         deleteButton.addActionListener(new ButtonListener());
         add(southPanel);
     }
+    /**
+     * Created by amitsuzawa on 5/14/15.
+     * ComboBoxListener deals with listening and dealing with user selection from the ComboBoxes.
+     * This class only affects the ComboBox that displays the Contacts, however.
+     * @see #contactSearch
+     */
     private class ComboBoxListener implements ItemListener {
         private String selectedContactName;
 
+        /**
+         * Upon choosing a different Contact from the ComboBox, the info fields change to match with the Contact selected.
+         * Method gets the name selected and finds the respective Contact.
+         * Then, it sets the info JLabels to the instance variables from that Contact.
+         * @param e - accounts for event that the selection in the ComboBox has changed.
+         */
         @Override
         public void itemStateChanged(ItemEvent e) {
             if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -109,28 +134,41 @@ public class ContactOverview extends JPanel{
                 email.setText(selectedContact.getEmail());
                 phone.setText(selectedContact.getOtherContact());
                 notes.setText(selectedContact.getNotes());
-                // converts Calendar to String
-                SimpleDateFormat formatter=new SimpleDateFormat("MM/dd/yyyy");
+                SimpleDateFormat formatter=new SimpleDateFormat("MM/dd/yyyy"); // converts Calendar to String
                 String currentDate = formatter.format(selectedContact.getLastContacted().getTime());
                 lastContacted.setText(currentDate);
             }
         }
     }
-
+    /**
+     * Created by amitsuzawa on 5/14/15.
+     * ButtonListener deals with the technical side of things when user clicks on add, edit or delete.
+     */
     private class ButtonListener implements ActionListener {
+        /**
+         * Proceeds in different ways depending on which button was clicked.
+         * @param e - accounts for event that a button has been clicked.
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
+            /**
+             * When source in the New button, creates a new stub Contact, adds it to the ContactBook and Contacts ComboBox.
+             * Calls new popup window so that user can provide details (stub is eventually replaced).
+             */
             if (e.getSource()==newButton) {
-             Contact stub = new Contact("New Contact");
+            	Contact stub = new Contact("New Contact");
                 cb.addContact(stub);
                 JFrame popup = new ContactChanges(mainPanel, cb, stub);
                 searchResultData.addElement(stub.getName());
             }
+            /**
+             * When source is the Delete button, takes selected Contact's name and deletes it from the ContactBook.
+             * Then since the Contact was just deleted, it clears out the info fields and resets the Contacts ComboBox.
+             */
             if (e.getSource()==deleteButton) {
                 cb.deleteContactByName(name.getText());
                 searchResultData.removeElement(name.getText());
                 contactSearch.setSelectedItem(null);
-                //check if there's better way to do this!!!
                 name.setText("");
                 city.setText("");
                 company.setText("");
@@ -140,27 +178,32 @@ public class ContactOverview extends JPanel{
                 notes.setText("");
                 lastContacted.setText("");
             }
+            /**
+             * When source is the Find button, gets user provided general criteria and detail to use in one of the find methods.
+             * Find methods return LinkedLists that are parsed into the searchResultData String[] to be displayed as options in the search result ComboBox.
+             * If nothing is found, then the Linkedlist is empty, there are no displayed Contacts in the ComboBox and the info fields should be empty.
+             */
             if (e.getSource()==findButton) {
-             String detail = searchDetail.getText();
-             String category = searchCriteria.getSelectedItem().toString();
+            	String detail = searchDetail.getText();
+            	String category = searchCriteria.getSelectedItem().toString();
                 searchResultData.removeAllElements();
                 LinkedList<Contact> results = new LinkedList<Contact>();
                 if (category.equals("All Contacts")) {
                     results = cb.getAllContacts();
                 } else if (category.equals("Name")) {
-                 results = cb.searchByName(detail);
+                	results = cb.searchByName(detail);
                 } else if (category.equals("City")) { 
-                 results = cb.searchByLocation(detail);
+                	results = cb.searchByLocation(detail);
                 } else if (category.equals("Company/School")) { 
-                 results = cb.searchByCompanyOrSchool(detail);
+                	results = cb.searchByCompanyOrSchool(detail);
                 } else if (category.equals("Meeting Location")) { 
-                 results = cb.searchByMeetingLoc(detail);
+                	results = cb.searchByMeetingLoc(detail);
                 } else if (category.equals("Email")) { 
-                 results = cb.searchByEmail(detail);
+                	results = cb.searchByEmail(detail);
                 } else if (category.equals("Phone")) { 
-                 results = cb.searchByOtherContact(detail);
+                	results = cb.searchByOtherContact(detail);
                 } else if (category.equals("Notes")) { 
-                 results = cb.searchByNotes(detail);
+                	results = cb.searchByNotes(detail);
                 }
 
                 if(results.isEmpty()) {
@@ -178,9 +221,12 @@ public class ContactOverview extends JPanel{
                     }
                 }
             }
+            /**
+             * When source is the Edit button, takes selected contact's name and find corresponding Contact object.
+             * Calls new popup window to deal with editing.
+             */
             if (e.getSource()==editButton) {
-                String selectedContactName = (String) contactSearch.getSelectedItem();
-                Contact selectedContact = cb.getContactByName(selectedContactName);
+                Contact selectedContact = cb.getContactByName(name.getText());
                 JFrame popup = new ContactChanges(mainPanel, cb, selectedContact);
             }
         }

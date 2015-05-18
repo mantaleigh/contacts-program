@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 
-
 /**
  * Created by amitsuzawa on 5/17/15.
+ * ContactChanges.java is the window that pops up after the user decides to add a new contact or edit contact info.
  */
 public class ContactChanges extends JFrame implements ActionListener{
 
@@ -17,6 +17,14 @@ public class ContactChanges extends JFrame implements ActionListener{
     private String oldName;
     private ContactOverview mainPanel;
 
+    /**
+     * Constructor.
+     * @param main - references the main Panel of the program, which is ContactOverview.
+     * @param program - references ContactBook created in the ContactBookGUI when the program was initialized.
+     *                 It is passed to this JFrame because we need to reference it to effect changes.
+     * @param selectedContact - Contact that calls for modification.
+     * @return popup JFrame for editing a Contact.
+     */
     public ContactChanges(ContactOverview main, ContactBook<Contact> program, Contact selectedContact) {
         mainPanel = main;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -69,6 +77,11 @@ public class ContactChanges extends JFrame implements ActionListener{
         setVisible(true);
     }
 
+    /**
+     * Gets all the text currently in the TextFields and stores them in variables.
+     * Uses these variables are parameters to edit a Contact.
+     * @param e - accounts for event that the Submit button was clicked since it is the only one.
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
             String currName = name.getText();
