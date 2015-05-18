@@ -6,6 +6,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+/**
+ * Created by amitsuzawa on 5/7/15.
+ */
 
 public class ContactBookGUI {
 
@@ -14,7 +17,7 @@ public class ContactBookGUI {
 	public ContactBookGUI() {
 		
 		// creates and shows a Frame
-		JFrame frame = new JFrame("Contact Book");
+		JFrame frame = new JFrame("Contact Manager");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// get the screen size as a java dimension

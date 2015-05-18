@@ -50,11 +50,9 @@ public class ContactOverview extends JPanel{
         add(new JSeparator());
 
         infoPanel = new JPanel();
-        GridLayout grid = new GridLayout(9,2);
+        GridLayout grid = new GridLayout(8,2);
         grid.setVgap(10);
         infoPanel.setLayout(grid);
-        infoPanel.add(new JLabel("Contact information"));
-        infoPanel.add(new JLabel());
         infoPanel.add(new JLabel("Name:"));
         name = new JLabel("");
         infoPanel.add(name);
