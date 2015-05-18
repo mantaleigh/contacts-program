@@ -1,25 +1,35 @@
-/* Samantha Voigt and Aline Mitsuzawa
- * 
- * 
- */
+/********************************************************************
+ *  ContactBook.java
+ *
+ *	 Stores all Contact information into a HashTable and reads and writes
+ *  to a file in order to save that information between program uses. 
+ *
+ *  @author Samantha Voigt
+ *********************************************************************/
 
 import java.util.*;
 import java.io.*;
 import java.lang.Integer;
 
 public class ContactBook<T> {
-	
+
 	private Hashtable<String, Contact> searchTable;
-	
-	//empty constructor used first time using the program
+	private final String FILENAME = "contactFile.txt";
+
+	/******************************************************************
+	 * Creates an empty HashTable to hold Contact objects. 
+	 * Used on first run of the program.
+	 *****************************************************************/
 	public ContactBook() {
-		searchTable = new Hashtable<String, Contact>(); // create a blank hashtable
+		searchTable = new Hashtable<String, Contact>();
 	}
-	
-	/* constructor that takes in a file of information
-	 * makes contact objects
-	 * should be called once the program is initialized to read previous user data
-	 */
+
+	/******************************************************************
+	 * Creates an empty HashTable to hold Contact objects. 
+	 * Used on first run of the program.
+	 * 
+	 * @param srcFile: the file of Contact information to make a ContactBook from
+	 *****************************************************************/
 	public ContactBook(String srcFile) {
 		searchTable = new Hashtable<String, Contact>();
 		try {
@@ -39,7 +49,14 @@ public class ContactBook<T> {
 			System.out.println(ex);
 		}
 	}
-	
+
+	/******************************************************************
+	 * Changes a typical "mm/dd/yyyy" formatted String and saves that
+	 * information into a given Calendar object.
+	 * 
+	 * @param mmddyyyy: String representing a date formatted as "mm/dd/yyyy"
+	 * @param cal: Calendar object to store information from mmddyyyy into
+	 *****************************************************************/
 	// helper method that takes a typical "mm/dd/yyyy" formatted String and saves that information into a given Calendar object
 	public void setCalFromString(String mmddyyyy, Calendar cal) { 
 		String[] dateArray = mmddyyyy.split("/");
@@ -48,18 +65,20 @@ public class ContactBook<T> {
 		int year = Integer.parseInt(dateArray[2]);
 		cal.set(year, month, date);
 	}
-	
-	// probably won't be able to use this bc ... problems
-//	public LinkedList<Contact> contactBookSearch(String category, String specificCriteria) {
-//		return null;
-//	}
-//	
-	
+
+
 	//**********************************************************************
 	//*********************** SEARCHING METHODS ****************************
 	//**********************************************************************
-	
-	// returns a linkedList of all contacts that fit the criteria given for searching by name. Not case sensitive.
+
+	/******************************************************************
+	 * Searches through the names of all Contacts in the HashTable 
+	 * looking for Contacts who have names that include the criteria String.
+	 * Not case sensitive and spaces don't matter.
+	 * 
+	 * @param criteria: Specific string to search for
+	 * @return all Contacts that fit the search in a linkedlist
+	 *****************************************************************/
 	public LinkedList<Contact> searchByName(String criteria) { 
 		LinkedList<Contact> results = new LinkedList<Contact>();
 		Enumeration<Contact> vals = searchTable.elements(); 
@@ -70,8 +89,15 @@ public class ContactBook<T> {
 		}
 		return results;
 	}
-	
-	// returns a linkedList of all contacts that fit the criteria given for searching by meeting location. Not case sensitive.
+
+	/******************************************************************
+	 * Searches through the meeting location of all Contacts in the HashTable 
+	 * looking for Contacts who have meeting locations that include the criteria String.
+	 * Not case sensitive and spaces don't matter.
+	 * 
+	 * @param criteria: Specific string to search for
+	 * @return all Contacts that fit the search in a linkedlist
+	 *****************************************************************/
 	public LinkedList<Contact> searchByMeetingLoc(String criteria) { 
 		LinkedList<Contact> results = new LinkedList<Contact>(); 
 		Enumeration<Contact> vals = searchTable.elements();
@@ -82,8 +108,15 @@ public class ContactBook<T> {
 		}
 		return results;
 	}
-	
-	// returns a linkedList of all contacts that fit the criteria given for searching by location. Not case sensitive.
+
+	/******************************************************************
+	 * Searches through the locations of all Contacts in the HashTable 
+	 * looking for Contacts who have locations that include the criteria String.
+	 * Not case sensitive and spaces don't matter.
+	 * 
+	 * @param criteria: Specific string to search for
+	 * @return all Contacts that fit the search in a linkedlist
+	 *****************************************************************/
 	public LinkedList<Contact> searchByLocation(String criteria) { 
 		LinkedList<Contact> results = new LinkedList<Contact>(); 
 		Enumeration<Contact> vals = searchTable.elements();
@@ -94,8 +127,15 @@ public class ContactBook<T> {
 		}
 		return results;
 	}
-	
-	// returns a linkedList of all contacts that fit the criteria given for searching by company or school. Not case sensitive.
+
+	/******************************************************************
+	 * Searches through the companies/schools of all Contacts in the HashTable 
+	 * looking for Contacts who have companies/schools that include the criteria String.
+	 * Not case sensitive and spaces don't matter.
+	 * 
+	 * @param criteria: Specific string to search for
+	 * @return all Contacts that fit the search in a linkedlist
+	 *****************************************************************/
 	public LinkedList<Contact> searchByCompanyOrSchool(String criteria) { 
 		LinkedList<Contact> results = new LinkedList<Contact>(); 
 		Enumeration<Contact> vals = searchTable.elements();
@@ -106,20 +146,34 @@ public class ContactBook<T> {
 		}
 		return results;
 	}
-	
-	// returns a linkedList of all contacts that fit the criteria given for searching by phone. Not case sensitive.
-//	public LinkedList<Contact> searchByPhone(String criteria) { 
-//		LinkedList<Contact> results = new LinkedList<Contact>(); 
-//		Enumeration<Contact> vals = searchTable.elements();
-//		while (vals.hasMoreElements()) { 
-//			Contact elt = vals.nextElement(); 
-//			String phone = elt.getPhone().toLowerCase().replace(" ", "").replace("-", "");
-//			if (phone.contains(criteria.toLowerCase().replace(" ", "").replace("-", ""))) results.add(elt);
-//		}
-//		return results;
-//	}
-	
-	// returns a linkedList of all contacts that fit the criteria given for searching by email. Not case sensitive.
+
+	/******************************************************************
+	 * Searches through the phones of all Contacts in the HashTable 
+	 * looking for Contacts who have phones that include the criteria String.
+	 * Not case sensitive and spaces don't matter.
+	 * 
+	 * @param criteria: Specific string to search for
+	 * @return all Contacts that fit the search in a linkedlist
+	 *****************************************************************/
+	//	public LinkedList<Contact> searchByPhone(String criteria) { 
+	//		LinkedList<Contact> results = new LinkedList<Contact>(); 
+	//		Enumeration<Contact> vals = searchTable.elements();
+	//		while (vals.hasMoreElements()) { 
+	//			Contact elt = vals.nextElement(); 
+	//			String phone = elt.getPhone().toLowerCase().replace(" ", "").replace("-", "");
+	//			if (phone.contains(criteria.toLowerCase().replace(" ", "").replace("-", ""))) results.add(elt);
+	//		}
+	//		return results;
+	//	}
+
+	/******************************************************************
+	 * Searches through the emails of all Contacts in the HashTable 
+	 * looking for Contacts who have emails that include the criteria String.
+	 * Not case sensitive and spaces don't matter.
+	 * 
+	 * @param criteria: Specific string to search for
+	 * @return all Contacts that fit the search in a linkedlist
+	 *****************************************************************/
 	public LinkedList<Contact> searchByEmail(String criteria) { 
 		LinkedList<Contact> results = new LinkedList<Contact>(); 
 		Enumeration<Contact> vals = searchTable.elements();
@@ -130,8 +184,15 @@ public class ContactBook<T> {
 		}
 		return results;
 	}
-	
-	// returns a linkedList of all contacts that fit the criteria given for searching by other contact info. Not case sensitive. Spaces don't matter.
+
+	/******************************************************************
+	 * Searches through the other contact info of all Contacts in the HashTable 
+	 * looking for Contacts who have other contact info that includes the criteria String.
+	 * Not case sensitive and spaces don't matter.
+	 * 
+	 * @param criteria: Specific string to search for
+	 * @return all Contacts that fit the search in a linkedlist
+	 *****************************************************************/
 	public LinkedList<Contact> searchByOtherContact(String criteria) { 
 		LinkedList<Contact> results = new LinkedList<Contact>(); 
 		Enumeration<Contact> vals = searchTable.elements();
@@ -143,7 +204,14 @@ public class ContactBook<T> {
 		return results;
 	}
 
-	// returns a linkedList of all contacts that fit the criteria given for searching by other contact info. Not case sensitive. Spaces don't matter.
+	/******************************************************************
+	 * Searches through the notes of all Contacts in the HashTable 
+	 * looking for Contacts who have notes that include the criteria String.
+	 * Not case sensitive and spaces don't matter.
+	 * 
+	 * @param criteria: Specific string to search for
+	 * @return all Contacts that fit the search in a linkedlist
+	 *****************************************************************/
 	public LinkedList<Contact> searchByNotes(String criteria) { 
 		LinkedList<Contact> results = new LinkedList<Contact>(); 
 		Enumeration<Contact> vals = searchTable.elements();
@@ -154,19 +222,25 @@ public class ContactBook<T> {
 		}
 		return results;
 	}
-	
-	//**************************************************************************************
-	
-	// ******** GET CONTACT BY NAME ***********
-    // use this method to get the contact from an entire name -- for displaying information to the right of the table
-    public Contact getContactByName(String name) {
-        return searchTable.get(name);
-    }
 
-    // ********* GET ALL NAMES ***********
-    // Returns a LinkedList of Strings that has the first and last name of all Contacts in the hashtable.
+	//**************************************************************************************
+
+	/******************************************************************
+	 * Gives the entire Contact object associated with a given name.
+	 * 
+	 * @param name: Specific string to search for
+	 * @return Contact that is associated with the given name
+	 *****************************************************************/
+	public Contact getContactByName(String name) {
+		return searchTable.get(name);
+	}
+
+	/******************************************************************
+	 * Gives all Contacts in the Hash Table
+	 * 
+	 * @return All Contacts in the HashTable in a linked list
+	 *****************************************************************/
 	public LinkedList<Contact> getAllContacts() {
-		//System.out.println(searchTable);
 		LinkedList<Contact> names = new LinkedList<>();
 		Enumeration<Contact> values = searchTable.elements();
 		while (values.hasMoreElements()) {
@@ -174,16 +248,31 @@ public class ContactBook<T> {
 		}
 		return names;
 	}
-	
-	// ************* ADD CONTACT *************
-	// adds a contact to the contact book
+
+	/******************************************************************
+	 * Adds a new Contact into the ContactBook
+	 * 
+	 * @param person: A Contact object to add to the ContactBook
+	 *****************************************************************/
 	public void addContact(Contact person) { 
 		searchTable.put(person.getName(), person);
 		writeSearchTableToFile();
 		System.out.println(searchTable);
 	}
-	
-	// ********** EDIT CONTACT ***************
+
+	/******************************************************************
+	 * Edits an existing Contact by replacing all it's values.
+	 * 
+	 * @param oldName: the name of the Contact before it was edited
+	 * @param newName: the name of the Contact after it was edited
+	 * @param meetingLoc: the edited meeting location of the Contact
+	 * @param location: the edited location of the Contact
+	 * @param companyOrSchool: the edited companyOrSchool of the Contact
+	 * @param email: the edited email of the Contact
+	 * @param otherContact: the edited otherContact info of the Contact
+	 * @param notes: the edited notes of the Contact
+	 * @param lastContacted: the edited lastContacted String of the Contact
+	 *****************************************************************/
 	public void editContact(String oldName, String newName, String meetingLoc, String location, String companyOrSchool, String email, String otherContact, String notes, String lastContacted) {
 		if (!oldName.equals(newName)) { // if the user changed the contact's name
 			searchTable.remove(oldName);  // have to delete and re-add to change the key
@@ -207,11 +296,14 @@ public class ContactBook<T> {
 		} 
 		writeSearchTableToFile(); // save the changes
 	}
-	
-	// helper function that writes the entire search table to a file called contactFile (either writing for the first time or overwriting)
+
+	/******************************************************************
+	 * Helper method that writes the entire search table to a file.
+	 * Will either write a new file or overwrite the existing one.
+	 *****************************************************************/
 	private void writeSearchTableToFile() { 
 		try {
-			PrintWriter writer = new PrintWriter("contactFile.txt");
+			PrintWriter writer = new PrintWriter(FILENAME);
 			Enumeration<Contact> vals = searchTable.elements();
 			while (vals.hasMoreElements()) { 
 				Contact c = vals.nextElement();
@@ -227,26 +319,29 @@ public class ContactBook<T> {
 			System.out.println(ex);
 		}
 	}
-	
-	// don't know which one of the next two methods will end up being the most useful... or both?
 
-	// ******* DELETE CONTACT BY NAME ********
-	// deletes a contact by passing in a name
+	/******************************************************************
+	 * Deletes a Contact from the ContactBook by the Contact's name
+	 * 
+	 * @param name: the full name associated with the Contact
+	 *****************************************************************/
 	public void deleteContactByName(String name) { 
 		searchTable.remove(name);
 		writeSearchTableToFile();
 	}
 
-	public void clearAllContacts() {searchTable.clear();}
-	
-//	// ******* DELETE CONTACT BY OBJ *********
-//	// deletes a contact by passing in an object
-//	public void deleteContactByObject(Contact person) { 
-//		searchTable.remove(person.getName());
-//		writeSearchTableToFile();
-//	}
-	
-	// ********** TO STRING ************
+	/******************************************************************
+	 * Deletes all the Contacts from the ContactBook
+	 *****************************************************************/
+	public void clearAllContacts() {
+		searchTable.clear();
+	}
+
+	/******************************************************************
+	 * Creates a String representation of the ContactBook
+	 * 
+	 * @return String: a String representation of the ContactBook
+	 *****************************************************************/
 	public String toString() { 
 		return searchTable.toString();
 	}

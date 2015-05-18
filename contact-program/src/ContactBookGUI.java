@@ -38,7 +38,7 @@ public class ContactBookGUI {
 
 		BufferedImage logoImage;
 		try {
-			logoImage = ImageIO.read(new File("./contact-program/ContactManager.png"));
+			logoImage = ImageIO.read(new File("ContactManager.png"));
 			JLabel picLabel = new JLabel(new ImageIcon(logoImage));
 			mainPanel.add(picLabel);
 		} catch (IOException e) {
