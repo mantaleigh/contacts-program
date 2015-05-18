@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="013249f3-70b6-432b-b42a-ce8705135601" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/contact-program/src/AddTab.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/bin/ContactBookDriver.class" afterPath="$PROJECT_DIR$/contact-program/bin/ContactBookDriver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/bin/ContactChanges.class" afterPath="$PROJECT_DIR$/contact-program/bin/ContactChanges.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/bin/ContactOverview$ButtonListener.class" afterPath="$PROJECT_DIR$/contact-program/bin/ContactOverview$ButtonListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/bin/ContactOverview$ComboBoxListener.class" afterPath="$PROJECT_DIR$/contact-program/bin/ContactOverview$ComboBoxListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/bin/ContactOverview.class" afterPath="$PROJECT_DIR$/contact-program/bin/ContactOverview.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/src/ContactChanges.java" afterPath="$PROJECT_DIR$/contact-program/src/ContactChanges.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/src/ContactOverview.java" afterPath="$PROJECT_DIR$/contact-program/src/ContactOverview.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/contact-program/ContactManager.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/bin/ContactBookGUI.class" afterPath="$PROJECT_DIR$/contact-program/bin/ContactBookGUI.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contact-program/src/ContactBookGUI.java" afterPath="$PROJECT_DIR$/contact-program/src/ContactBookGUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contactFile.txt" afterPath="$PROJECT_DIR$/contactFile.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -34,11 +29,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ContactOverview.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ContactBookGUI.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/contact-program/src/ContactBookGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.29085872">
+              <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContactOverview.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contact-program/src/ContactOverview.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3739612">
-              <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#6078#6087#0" expanded="true" />
@@ -127,11 +134,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/contactFile.txt" />
-        <option value="$PROJECT_DIR$/contact-program/src/ContactBookGUI.java" />
         <option value="$PROJECT_DIR$/contact-program/src/ContactBookDriver.java" />
         <option value="$PROJECT_DIR$/contact-program/src/ContactBook.java" />
         <option value="$PROJECT_DIR$/contact-program/src/ContactChanges.java" />
         <option value="$PROJECT_DIR$/contact-program/src/ContactOverview.java" />
+        <option value="$PROJECT_DIR$/contact-program/src/ContactBookGUI.java" />
       </list>
     </option>
   </component>
@@ -143,8 +150,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-14" />
-    <option name="y" value="26" />
+    <option name="x" value="54" />
+    <option name="y" value="45" />
     <option name="width" value="1200" />
     <option name="height" value="672" />
   </component>
@@ -218,6 +225,7 @@
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/workspace/Assignment7/src/Task2/GradSchoolsGUIPanel.java" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -514,7 +522,7 @@
       <updated>1431643954123</updated>
       <workItem from="1431643958715" duration="14383000" />
       <workItem from="1431817838458" duration="7554000" />
-      <workItem from="1431827992874" duration="32350000" />
+      <workItem from="1431827992874" duration="34900000" />
     </task>
     <task id="LOCAL-00001" summary="Buggy">
       <created>1431828898819</created>
@@ -526,10 +534,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54287000" />
+    <option name="totallyTimeSpent" value="56837000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-14" y="26" width="1200" height="672" extended-state="0" />
+    <frame x="54" y="45" width="1200" height="672" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -764,16 +772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contact-program/src/ContactBookGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/src.zip!/java/util/Hashtable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33240998">
@@ -823,13 +821,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Documents/workspace/Assignment7/src/Task2/GradSchoolsGUIPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50138503">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="34" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/contact-program/src/ContactOverview.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3739612">
-          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6078#6087#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contact-program/ContactManager.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contact-program/src/ContactBookGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29085872">
+          <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

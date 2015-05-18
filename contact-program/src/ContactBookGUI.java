@@ -2,7 +2,9 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class ContactBookGUI {
@@ -33,6 +35,15 @@ public class ContactBookGUI {
 		if (new File(fileName).isFile()) program = new ContactBook<Contact>(fileName); // if the file does exist, read in from it
 
 		JPanel mainPanel = new JPanel();
+
+		BufferedImage logoImage;
+		try {
+			logoImage = ImageIO.read(new File("./contact-program/ContactManager.png"));
+			JLabel picLabel = new JLabel(new ImageIcon(logoImage));
+			mainPanel.add(picLabel);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		mainPanel.add(new ContactOverview(program));
 
