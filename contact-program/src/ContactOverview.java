@@ -54,8 +54,8 @@ public class ContactOverview extends JPanel{
         resultPanel = new JPanel();
         searchResult = new JLabel("Search results");
         resultPanel.add(searchResult);
-        searchResultData = new DefaultComboBoxModel<String>();
-        contactSearch = new JComboBox<String>(searchResultData);
+        searchResultData = new DefaultComboBoxModel();
+        contactSearch = new JComboBox(searchResultData);
         contactSearch.setSelectedItem(null);
         contactSearch.addItemListener(new ComboBoxListener());
         resultPanel.add(contactSearch);
